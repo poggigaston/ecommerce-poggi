@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -10,7 +13,12 @@ function App() {
         <button className="btn btn-primary">boton</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
-        </p>        
+        </p>
+        <Row className="mx-0">
+          <Button as={Col} variant="primary">Button #1</Button>
+          <Button as={Col} variant="secondary" className="mx-2">Button #2</Button>
+          <Button as={Col} variant="success">Button #3</Button>
+        </Row>       
         <a
           className="App-link"
           href="https://reactjs.org"
