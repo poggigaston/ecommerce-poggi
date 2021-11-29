@@ -1,0 +1,5 @@
+{
+    "javascript.suggest.completeFunctionCalls": true,
+    "javascript.format.semicolons": "insert",
+    "javascript.format.insertSpaceAfterConstructor": true
+}
