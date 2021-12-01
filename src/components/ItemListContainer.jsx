@@ -9,7 +9,7 @@ const ItemListContainer = ({ children, greeting, nombre, descripcion, precio}) =
     return (
         <div className="container-fluid">            
             <h1>{greeting}</h1>
-            <ItemCount stock={7} initial={1}></ItemCount>        
+            <ItemCount stock={8} initial={1}></ItemCount>        
             {children}
             {/* <div class="card" style={style}>
                 <img src="./" class="card-img-top" alt="Imagen"></img>

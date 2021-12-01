@@ -6,20 +6,28 @@ function ItemCount({ stock, initial }) {
         width: '18rem'
     };
     const [contador, setCount] = useState(initial);
-    const [habilitarBoton, setHabilitarBoton] = useState("");    
+    const [botonCart, setBotonCart] = useState("");    
+    const [botonResta, setBotonResta] = useState("");    
+    const [botonSuma, setBotonSuma] = useState("");    
     
     function onAdd () {
         if (contador < stock) {
             setCount(contador + 1)
-            setHabilitarBoton ("")            
+            setBotonSuma ("")
+            setBotonResta ("")
+            setBotonCart ("")     
+        }else {
+            setBotonSuma ("true")
         }
     }
 
     function onRem () {
         if (contador > 1) {
             setCount(contador - 1)
+            setBotonSuma ("")
         }else {
-            setHabilitarBoton ("true")
+            setBotonCart ("true")
+            setBotonResta ("true")
             setCount(contador - 1)
         }
     }
@@ -27,13 +35,13 @@ function ItemCount({ stock, initial }) {
     return (
         <div className="card" style={style}>
             <p className="m-0 pt-3">Stock {stock}</p>
-            <div className="card-body">
+            <div className="card-body" style={style}>
                 <div className="p-3 ">
-                    <button className="btn btn-outline-secondary p-10" onClick={() => onAdd()}>+</button>
+                    <button className="btn btn-outline-secondary p-10" disabled={botonSuma} onClick={() => onAdd()}>+</button>
                     <span className="p-5">{contador}</span>
-                    <button className="btn btn-outline-secondary p-10" onClick={() => onRem()}>-</button><br />
+                    <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRem()}>-</button><br />
                 </div>
-                <button className="btn btn-primary p-10" disabled={habilitarBoton} >Agregar al Carrito</button>
+                <button className="btn btn-primary p-10" disabled={botonCart} >Agregar al Carrito</button>
             </div>
         </div>
     )
