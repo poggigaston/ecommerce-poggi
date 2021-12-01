@@ -6,22 +6,20 @@ function ItemCount({ stock, initial }) {
         width: '18rem'
     };
     const [contador, setCount] = useState(initial);
-    // const [habilitarBoton, setHabilitarBoton] = useState("false");
+    const [habilitarBoton, setHabilitarBoton] = useState("");    
     
-    // function Boton() {
-    //     if (contador == 0) {
-    //         setHabilitarBoton("true")
-    //     }
-    // }
-
     function onAdd () {
         if (contador < stock) {
             setCount(contador + 1)
+            setHabilitarBoton ("")            
         }
     }
 
     function onRem () {
-        if (contador >= 1) {
+        if (contador > 1) {
+            setCount(contador - 1)
+        }else {
+            setHabilitarBoton ("true")
             setCount(contador - 1)
         }
     }
@@ -35,7 +33,7 @@ function ItemCount({ stock, initial }) {
                     <span className="p-5">{contador}</span>
                     <button className="btn btn-outline-secondary p-10" onClick={() => onRem()}>-</button><br />
                 </div>
-                <button className="btn btn-primary p-10" >Agregar al Carrito</button>
+                <button className="btn btn-primary p-10" disabled={habilitarBoton} >Agregar al Carrito</button>
             </div>
         </div>
     )
