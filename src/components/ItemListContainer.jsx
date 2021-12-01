@@ -1,6 +1,7 @@
 import React from 'react';
+import ItemCount from './ItemCount';
 
-const ItemListContainer = ({ greeting, nombre, descripcion, precio }) => {
+const ItemListContainer = ({ children, greeting, nombre, descripcion, precio}) => {
     const style = {
         width: '18rem'
     };
@@ -8,7 +9,9 @@ const ItemListContainer = ({ greeting, nombre, descripcion, precio }) => {
     return (
         <div className="container-fluid">            
             <h1>{greeting}</h1>
-            <div class="card" style={style}>
+            <ItemCount stock={7} initial={1}></ItemCount>        
+            {children}
+            {/* <div class="card" style={style}>
                 <img src="./" class="card-img-top" alt="Imagen"></img>
                 <div class="card-body">
                 <h5 class="card-title">{nombre}</h5>
@@ -16,7 +19,7 @@ const ItemListContainer = ({ greeting, nombre, descripcion, precio }) => {
                 <p class="card-text">$ {precio}</p>
                 <a href="#" class="btn btn-primary">Comprar</a>
                 </div>
-            </div>
+            </div> */}
             
         </div>
     );
