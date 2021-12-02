@@ -1,10 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ItemCount from './ItemCount';
 
 const ItemListContainer = ({ children, greeting, nombre, descripcion, precio}) => {
     const style = {
         width: '18rem'
     };
+
+    const [data, setData] = useState(null);
+
+    let array = []
+
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(array)
+        },3000)
+    })
+
+    const resolverArray = async () => {
+        try {
+            const data = await promise;
+            setData(data)
+        } catch (error) {
+            throw error;
+        } finally {
+            console.log("la peticion se termino")
+        }
+    }
+
+    useEffect(() => {
+        resolverArray()        
+    }, [])
     
     return (
         <div className="container-fluid">            

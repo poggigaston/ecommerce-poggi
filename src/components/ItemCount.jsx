@@ -16,7 +16,7 @@ function ItemCount({ stock, initial }) {
             setBotonResta ("")
             setBotonCart ("")     
         }else {
-            setBotonSuma ("true")
+            setBotonSuma (true)
         }
     }
 
@@ -25,8 +25,8 @@ function ItemCount({ stock, initial }) {
             setCount(contador - 1)
             setBotonSuma ("")
         }else {
-            setBotonCart ("true")
-            setBotonResta ("true")
+            setBotonCart (true)
+            setBotonResta (true)
             setCount(contador - 1)
         }
     }

@@ -1,7 +1,4 @@
-import React from 'react'
-import ItemListContainer from './ItemListContainer';
-
-
+import React from 'react';
 
 const Footer = () => {
     const style = {
