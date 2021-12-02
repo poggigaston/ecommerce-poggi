@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import ItemCount from './ItemCount';
 
-const ItemListContainer = ({ children, greeting, nombre, descripcion, precio}) => {
-    const style = {
-        width: '18rem'
-    };
-
+const ItemListContainer = ({ children, greeting}) => {
+    
     const [data, setData] = useState(null);
 
     let array = []
@@ -35,17 +32,7 @@ const ItemListContainer = ({ children, greeting, nombre, descripcion, precio}) =
         <div className="container-fluid">            
             <h1>{greeting}</h1>
             <ItemCount stock={8} initial={1}></ItemCount>        
-            {children}
-            {/* <div class="card" style={style}>
-                <img src="./" class="card-img-top" alt="Imagen"></img>
-                <div class="card-body">
-                <h5 class="card-title">{nombre}</h5>
-                <p class="card-text">{descripcion}</p>
-                <p class="card-text">$ {precio}</p>
-                <a href="#" class="btn btn-primary">Comprar</a>
-                </div>
-            </div> */}
-            
+            {children}        
         </div>
     );
 }

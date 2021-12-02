@@ -12,7 +12,7 @@ function NavBar() {
                 <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Productos</a>
+                            <a className="nav-link" aria-current="page" href="#">Productos</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">La Empresa</a>
