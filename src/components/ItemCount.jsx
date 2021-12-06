@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+    
 function ItemCount({ stock, initial }) {
     const style = {
         width: '18rem'
