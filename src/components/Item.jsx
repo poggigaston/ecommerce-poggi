@@ -1,11 +1,10 @@
-import React from 'react' 
-import ItemCount from './ItemCount'
+import React from 'react';
 
-export default function Item({ item, stock }) {
+export default function Item({ item }) {
     const style = {
         width: '18rem'
     };
-    
+
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">
             {/* <h1>Aca van las cards</h1> */}
@@ -13,15 +12,14 @@ export default function Item({ item, stock }) {
                 <img src={item.img} className="card-img-top" alt="..."></img>
                 <div className="card-body">
                     <h5 className="card-title">{item.nombre}</h5>
-                    <p className="card-text">{item.desc}<br></br><br></br>
-                        <div className="h2">{item.precio}</div></p>
+                    {/* <p className="card-text">{item.desc}<br></br><br></br>
+                        <div className="h2">{item.precio}</div></p> */}
                     <p>Stock {item.stock}</p>
-                        <a  className="btn btn-success" id="boton" onclick= {item.id}>Ver Detalle</a>
-                    </div>
+                    <a className="btn btn-success" id="boton" onClick={item.id}>Ver Detalle</a>
+                </div>
             </div>
-
         </div>
-    )
+    );
 }
 
 

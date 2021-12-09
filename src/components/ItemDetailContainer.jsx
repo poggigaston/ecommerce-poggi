@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import ItemList from './ItemList';
+import React, { useState, useEffect } from 'react'
+import ItemDetail from './ItemDetail';
+import Item from './Item';
 
 
-const ItemListContainer = ({ children, greeting }) => {
+function ItemDetailContainer({filtro}) {
     
-   const productos = [
+    const productos = [
     {   id: 1,
         nombre: "PC-732G-LED",
         tipo: "CENTRAL",
@@ -156,21 +157,26 @@ const ItemListContainer = ({ children, greeting }) => {
         precio: 4200,
         img: "/images/Sirenas/MP-200.jpg",
         desc: "Sirena Exterior doble Piezoeléctrica."        
-    }]    
+        }]
     
     const [data, setData] = useState(null);
-
+    const getItem = productos.filter(function (e) {
+            return e.id === 2;            
+        })
+        console.log(getItem)
+    
+    
     let promise = new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(productos)
+            resolve(getItem)
         },2000)
     })
+    
 
-
-    const resolverArray = async () => {
+    const resolver = async () => {
         try {
             const data = await promise;
-            // console.log(data)
+            console.log(data)
             setData(data)
         } catch (err) {
             throw err;
@@ -181,19 +187,16 @@ const ItemListContainer = ({ children, greeting }) => {
     }
 
     useEffect(() => {
-        resolverArray()
-        // fetch("https://pokeapi.co/api/v2/pokemon")
-        //     .then((res) => res.json())
-        //     .then((res) => console.log(res.results))
+        resolver()
     }, [])
-   
+
     return (
-        <div className="container-fluid">            
-            <h1>{greeting}</h1>
-            <ItemList items={data}/>
-            {children}        
+        <div className="row">
+            <p><span className="spinner-border"></span>CARGANDO...</p>
+            {/* <ItemDetail item={data}/> */}
         </div>
+       
     );
 }
 
-export default ItemListContainer
+export default ItemDetailContainer;
