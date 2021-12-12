@@ -6,8 +6,7 @@ export default function Item({ item }) {
     };
 
     return (
-        <div className="col col-md-6 col-lg-4 col- my-4">
-            {/* <h1>Aca van las cards</h1> */}
+        <div className="col col-md-6 col-lg-4 col- my-4">           
             <div className="card" style={style}>
                 <img src={item.img} className="card-img-top" alt="..."></img>
                 <div className="card-body">
@@ -15,7 +14,7 @@ export default function Item({ item }) {
                     {/* <p className="card-text">{item.desc}<br></br><br></br>
                         <div className="h2">{item.precio}</div></p> */}
                     <p>Stock {item.stock}</p>
-                    <a className="btn btn-success" id="boton" onClick={item.id}>Ver Detalle</a>
+                    <a className="btn btn-success">Ver Detalle</a>
                 </div>
             </div>
         </div>

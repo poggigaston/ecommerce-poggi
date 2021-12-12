@@ -160,16 +160,18 @@ function ItemDetailContainer({filtro}) {
         }]
     
     const [data, setData] = useState(null);
+
     const getItem = productos.filter(function (e) {
-            return e.id === 2;            
-        })
-        console.log(getItem)
+        return e.id === 2;            
+    })
+
+    console.log(getItem)
     
     
     let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(getItem)
-        },2000)
+            setTimeout(() => {
+                resolve(getItem)
+            },2000)
     })
     
 
@@ -192,8 +194,8 @@ function ItemDetailContainer({filtro}) {
 
     return (
         <div className="row">
-            <p><span className="spinner-border"></span>CARGANDO...</p>
-            {/* <ItemDetail item={data}/> */}
+            {/* <p><span className="spinner-border"></span>CARGANDO...</p> */}
+            <ItemDetail item={getItem}/>
         </div>
        
     );
