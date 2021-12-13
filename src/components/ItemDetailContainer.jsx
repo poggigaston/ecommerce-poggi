@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ItemDetail from './ItemDetail';
-import Item from './Item';
-
 
 function ItemDetailContainer({filtro}) {
     
@@ -157,45 +155,12 @@ function ItemDetailContainer({filtro}) {
         precio: 4200,
         img: "/images/Sirenas/MP-200.jpg",
         desc: "Sirena Exterior doble Piezoeléctrica."        
-        }]
+    }]     
+  
     
-    const [data, setData] = useState(null);
-
-    const getItem = productos.filter(function (e) {
-        return e.id === 2;            
-    })
-
-    console.log(getItem)
-    
-    
-    let promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(getItem)
-            },2000)
-    })
-    
-
-    const resolver = async () => {
-        try {
-            const data = await promise;
-            console.log(data)
-            setData(data)
-        } catch (err) {
-            throw err;
-        } finally {
-            console.log("la peticion se termino")
-           
-        }
-    }
-
-    useEffect(() => {
-        resolver()
-    }, [])
-
     return (
-        <div className="row">
-            {/* <p><span className="spinner-border"></span>CARGANDO...</p> */}
-            <ItemDetail item={getItem}/>
+        <div className="row">            
+                <ItemDetail item={productos[filtro]} />                
         </div>
        
     );

@@ -6,13 +6,14 @@ const Footer = () => {
         position: "fixed",
         left: "0",
         right: "0",
-        bottom: "0"
+        bottom: "0",
+        width: "100vw"
     }
 
 
     return (
         <div style={style}>
-          <h4>Desarrolldado por Gaston Poggi</h4>  
+          <h4>Desarrollado por Gaston Poggi</h4>  
         </div>
     )
 }
