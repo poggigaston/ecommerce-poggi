@@ -16,8 +16,6 @@ import MP300 from './images/Sirenas/MP-300.jpg';
 import MP150 from './images/Sirenas/MP-150.jpg';
 import MP200 from './images/Sirenas/MP-200.jpg';
 
-
-
 export default [
     PC732GLED,
     PC900GLED,
@@ -35,5 +33,5 @@ export default [
     DGW500PET,
     MP300,
     MP150,
-    MP200
+    MP200,    
 ]

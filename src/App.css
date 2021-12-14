@@ -61,14 +61,22 @@ div {
 #panytec {
   background-color: #2d436f;
   color: black;
+  width: auto;
+  margin: 0;
 }
 #comu {
   background-color: #81cc76;
+  width: auto;
+  margin: 0;
 }
 #senso {
   background-color: #f5db57;
+  width: auto;
+  margin: 0;
 }
 #sire {
   background-color: #e16453;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+  width: auto;
+  margin: 0;
 }

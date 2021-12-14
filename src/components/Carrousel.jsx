@@ -3,7 +3,7 @@ import flia2 from '../assets/images/flia2.jpg'
 import flia3 from '../assets/images/flia3.jpeg'
 import fliadark from '../assets/images/flia_dark.jpg'
 
-export const Carrousel = () => {
+export default function Carrousel () {
     return (
         <div>
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">

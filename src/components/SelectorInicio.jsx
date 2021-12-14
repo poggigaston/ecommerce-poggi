@@ -1,44 +1,50 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
+import panytec from "../assets/images/Paneles-y-Teclados.png";
+import comu from "../assets/images/Comunicadores.png";
+import senso from "../assets/images/Sensores-Cableados.png";
+import sire from "../assets/images/Sirenas.png";
 
-export const SelectorInicio = () => {
+
+export default function SelectorInicio () {
     
-    const inicio = [
+    const categorias = [
     {   id: "panytec",
-        link: "html/panelesyteclado.html",
+        link: "/categorias/:paneles",
         titulo: "Paneles y Teclados",
         idImagen: "idpaneles",
-        linkImagen: "images/Paneles-y-Teclados.png",
+        linkImagen: panytec,
     },
     {   id: "comu",
-        link: "html/comunicadores.html",
+        link: "/categorias/:comunicadores",
         titulo: "Comunicadores",
         idImagen: "idcomunicadores",
-        linkImagen: "images/Comunicadores.png",
+        linkImagen: comu,
     },
     {   id: "senso",
-        link: "html/sensores.html",
+        link: "/categorias/:sensores",
         titulo: "Sensores",
         idImagen: "idsensores",
-        linkImagen: "images/Sensores-Cableados.png",
+        linkImagen: senso,
     },
     {   id: "sire",
-        link: "html/sirenas.html",
+        link: "/categorias/:sirenas",
         titulo: "Sirenas",
         idImagen: "idsirenas",
-        linkImagen: "images/Sirenas.png",
+        linkImagen: sire,
     }
 ] 
 
-
     return (
-        <div>
-            <div id={inicio.id} className="container-fluid p-3 text-center col-lg-6 col-sm-12 ">
-                <NavLink href={inicio.link}>
-                <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{inicio.titulo}</button>
-                </NavLink>
-                <img id={inicio.idImagen} src={LinkImagen[0]} alt=""></img>
-            </div>
+        <div>            
+            {categorias.map((inicio) => (
+                <div id={inicio.id} className="container-fluid p-3 text-center col-lg-6 col-sm-12 ">
+                    <NavLink to={inicio.link}>
+                        <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{inicio.titulo}</button>
+                    </NavLink>
+                    <img id={inicio.idImagen} src={inicio.linkImagen} alt=""></img>
+                </div>
+            ))}            
         </div>
     )
 }

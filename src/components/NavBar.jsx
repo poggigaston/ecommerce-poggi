@@ -15,8 +15,14 @@ function NavBar() {
                         <li className="nav-item">
                             <NavLink to="/productos" className="nav-link" aria-current="page">Productos</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/categorias" className="nav-link" >Categorias</NavLink>
+                        <li className="nav-item dropdown">
+                            <NavLink to="/categorias" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Categorias</NavLink>                            
+                            <ul className="dropdown-menu">
+                                <li><NavLink to="/categorias" className="dropdown-item" href="html/panelesyteclado.html">Paneles y Teclados</NavLink></li>
+                                <li><NavLink to="/categorias" className="dropdown-item" href="html/comunicadores.html">Comunicadores</NavLink></li>
+                                <li><NavLink to="/categorias" className="dropdown-item" href="html/sensores.html">Sensores</NavLink></li>
+                                <li li><NavLink to="/categorias" className="dropdown-item" href="html/sirenas.html">Sirenas</NavLink></li>
+                            </ul>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/nosotros" className="nav-link" >La Empresa</NavLink>
