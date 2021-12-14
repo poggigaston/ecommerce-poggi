@@ -6,9 +6,7 @@ import src from "../assets/img";
 export default function ItemDetail({ item }) {
     const style = {
         width: '18rem'
-    };
-
-    
+    };    
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">
             <div className="card" style={style}>
@@ -21,8 +19,7 @@ export default function ItemDetail({ item }) {
                 </div>
             </div>    
             <ItemCount stock={item.stock} initial={1}></ItemCount>
-        </div>
-                
+        </div>               
         
     );
 }

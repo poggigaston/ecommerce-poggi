@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ItemDetail from './ItemDetail';
 
-function ItemDetailContainer({filtro}) {
+function ItemDetailContainer() {
+
+    const [producto,setProducto]= useState(null)
     
     const productos = [
     {   id: 1,
@@ -157,13 +159,33 @@ function ItemDetailContainer({filtro}) {
         desc: "Sirena Exterior doble Piezoeléctrica."        
     }]     
   
+    let promesa = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(productos);
+        }, 2000);
+    })
     
-    return (
-        <div className="row">            
-                <ItemDetail item={productos[filtro]} />                
-        </div>
-       
-    );
-}
+    const obtenerProducto= async()=>{
+        try{
+            const producto= await promesa;
+            setProducto(producto)
+        //console.log(data)
+        } catch(error){
+            throw error
+        } finally{
+        }
+    }
 
-export default ItemDetailContainer;
+    useEffect(()=>{
+        obtenerProducto()
+    },[])
+
+    return (
+        <div className="row">
+            {producto? 
+                <ItemDetail item={producto[0]} />
+            : <p><span className="spinner-border"></span>CARGANDO...</p>}    
+        </div>      
+    )
+}
+export default ItemDetailContainer
