@@ -80,3 +80,8 @@ div {
   width: auto;
   margin: 0;
 }
+#contenedorContacto {
+  background-color: #c5ecf7;
+  width: 100vw;
+  height: 100vh;
+}

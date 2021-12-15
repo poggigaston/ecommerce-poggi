@@ -2,7 +2,7 @@ import React from 'react'
 import flia from '../assets/images/flia4.jpg'
 import nosotros from '../assets/images/Nosotros.jpg'
 
-export const Nosotros = () => {
+export default function Nosotros () {
     
     return (
         <div>            
