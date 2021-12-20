@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState }from 'react'
 import ItemCount from './ItemCount';
 import src from "../assets/img";
 
@@ -6,7 +6,10 @@ import src from "../assets/img";
 export default function ItemDetail({ item }) {
     const style = {
         width: '18rem'
-    };    
+    };
+    const [carrito, setCarrito] = useState([]);
+
+
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">
             <div className="card" style={style}>
@@ -18,7 +21,7 @@ export default function ItemDetail({ item }) {
                     {/* <a className="btn btn-success">Agregar al Carrito</a> */}
                 </div>
             </div>    
-            <ItemCount stock={item.stock} initial={1}></ItemCount>
+            <ItemCount stock={item.stock} initial={1} item={item}></ItemCount>
         </div>               
         
     );

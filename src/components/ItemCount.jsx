@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
     
-function ItemCount({ stock, initial }) {
+function ItemCount({ stock, initial, item }) {
     const style = {
         width: '18rem'
     };
@@ -9,8 +9,9 @@ function ItemCount({ stock, initial }) {
     const [botonCart, setBotonCart] = useState("");    
     const [botonResta, setBotonResta] = useState("");    
     const [botonSuma, setBotonSuma] = useState("");    
+    const [carrito, setCarrito] = useState([]);    
     
-    function onAdd () {
+    function onSum () {
         if (contador < stock) {
             setCount(contador + 1)
             setBotonSuma ("")
@@ -21,7 +22,7 @@ function ItemCount({ stock, initial }) {
         }
     }
 
-    function onRem () {
+    function onRes () {
         if (contador > 1) {
             setCount(contador - 1)
             setBotonSuma ("")
@@ -31,17 +32,21 @@ function ItemCount({ stock, initial }) {
             setCount(contador - 1)
         }
     }
+
+    function onAdd(item) {
+        setCarrito(item)    
+    }
     
     return (
         <div className="card" style={style}>
             <p className="m-0 pt-3">Stock {stock}</p>
             <div className="card-body" style={style}>
                 <div className="p-3 ">
-                    <button className="btn btn-outline-secondary p-10" disabled={botonSuma} onClick={() => onAdd()}>+</button>
+                    <button className="btn btn-outline-secondary p-10" disabled={botonSuma} onClick={() => onSum()}>+</button>
                     <span className="p-5">{contador}</span>
-                    <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRem()}>-</button><br />
+                    <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRes()}>-</button><br />
                 </div>
-                <button className="btn btn-primary p-10" disabled={botonCart} >Agregar al Carrito</button>
+                <button className="btn btn-primary p-10" disabled={botonCart} onClick={() => onAdd({item})}>Agregar al Carrito</button>
             </div>
         </div>
     )

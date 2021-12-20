@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Cart from '../views/Cart';
+import Cart from '../views/Cart';
 import Categorias from '../views/Categorias';
 import Contacto from '../views/Contacto';
 import Error from '../views/Error';
@@ -16,7 +16,7 @@ export default function Rutas() {
             <Routes>
                 <Route path="/" element={<Layout/>}>               
                     <Route index element={<Home/>} />                
-                    {/* <Route path="/cart" element={<Cart/>} />                 */}
+                    <Route path="/cart" element={<Cart/>} />                
                     <Route path="/contacto" element={<Contacto/>} />                
                     <Route path="/categorias/:categoria" element={<Categorias/>} />                
                     <Route path="/nosotros" element={<Nosotros/>} />                
