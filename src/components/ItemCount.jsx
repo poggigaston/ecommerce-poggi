@@ -8,7 +8,8 @@ function ItemCount({ stock, initial, item }) {
     const [contador, setCount] = useState(initial);
     const [botonCart, setBotonCart] = useState("");    
     const [botonResta, setBotonResta] = useState("");    
-    const [botonSuma, setBotonSuma] = useState("");    
+    const [botonSuma, setBotonSuma] = useState("");
+    const [cantidad, setCantidad] = useState(initial);
     const [carrito, setCarrito] = useState([]);    
     
     function onSum () {
@@ -34,7 +35,8 @@ function ItemCount({ stock, initial, item }) {
     }
 
     function onAdd(item) {
-        setCarrito(item)    
+        setCarrito(item)
+        console.log(item);       
     }
     
     return (
@@ -46,7 +48,7 @@ function ItemCount({ stock, initial, item }) {
                     <span className="p-5">{contador}</span>
                     <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRes()}>-</button><br />
                 </div>
-                <button className="btn btn-primary p-10" disabled={botonCart} onClick={() => onAdd({item})}>Agregar al Carrito</button>
+                <button className="btn btn-primary p-10" disabled={botonCart} onClick={()=>console.log(cantidad*contador)}/* {() => onAdd({item})} */>{stock*contador<=0?"No disponible":"Agregar al carrito"}</button>
             </div>
         </div>
     )

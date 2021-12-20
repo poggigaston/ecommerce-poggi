@@ -8,8 +8,7 @@ export default function ItemDetail({ item }) {
         width: '18rem'
     };
     const [carrito, setCarrito] = useState([]);
-
-
+    
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">
             <div className="card" style={style}>
