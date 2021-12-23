@@ -9,22 +9,25 @@ import Nosotros from '../views/Nosotros';
 import Productos from '../views/Productos';
 import Detalle from '../views/Detalle';
 import Layout from '../views/Layout';
+import CarritoProvider from '../context/CarritoProvider';
 
 export default function Rutas() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout/>}>               
+            <CarritoProvider>
+                <Routes>
+                    <Route path="/" element={<Layout/>}>               
                     <Route index element={<Home/>} />                
                     <Route path="/cart" element={<Cart/>} />                
                     <Route path="/contacto" element={<Contacto/>} />                
                     <Route path="/categorias/:categoria" element={<Categorias/>} />                
                     <Route path="/nosotros" element={<Nosotros/>} />                
                     <Route path="/productos" element={<Productos/>} />                
-                    <Route path="/detalle/:id" element={<Detalle />} />
-                </Route>    
-                <Route path="*" element={ <Error/> } />                
-            </Routes>
+                    <Route path="/detalle/" element={<Detalle />} />
+                    </Route>    
+                    <Route path="*" element={ <Error/> } />                
+                </Routes>
+            </CarritoProvider>    
         </BrowserRouter>
         
     )

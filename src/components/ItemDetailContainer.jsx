@@ -183,7 +183,7 @@ function ItemDetailContainer() {
     return (
         <div className="row">
             {producto? 
-                <ItemDetail item={producto[0]} />
+                <ItemDetail item={producto[1]} />
             : <p><span className="spinner-border"></span>CARGANDO...</p>}    
         </div>      
     )
