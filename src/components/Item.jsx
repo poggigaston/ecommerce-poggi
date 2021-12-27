@@ -16,7 +16,7 @@ export default function Item({ item }) {
                     {/* <p className="card-text">{item.desc}<br></br><br></br>
                         <div className="h2">{item.precio}</div></p> */}
                     <p>Stock {item.stock}</p>
-                    <NavLink to="/detalle"><button className="btn btn-success" >Ver Detalle</button></NavLink>
+                    <NavLink to={'/detalle/${key}'}><button className="btn btn-success" >Ver Detalle</button></NavLink>
                 </div>
             </div>
         </div>

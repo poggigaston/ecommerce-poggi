@@ -168,8 +168,7 @@ function ItemDetailContainer() {
     const obtenerProducto= async()=>{
         try{
             const producto= await promesa;
-            setProducto(producto)
-        //console.log(data)
+            setProducto(producto);            
         } catch(error){
             throw error
         } finally{
@@ -177,11 +176,11 @@ function ItemDetailContainer() {
     }
 
     useEffect(()=>{
-        obtenerProducto()
+        obtenerProducto()        
     },[])
 
     return (
-        <div className="row">
+        <div className="container">            
             {producto? 
                 <ItemDetail item={producto[1]} />
             : <p><span className="spinner-border"></span>CARGANDO...</p>}    

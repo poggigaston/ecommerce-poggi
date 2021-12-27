@@ -23,7 +23,7 @@ export default function Rutas() {
                     <Route path="/categorias/:categoria" element={<Categorias/>} />                
                     <Route path="/nosotros" element={<Nosotros/>} />                
                     <Route path="/productos" element={<Productos/>} />                
-                    <Route path="/detalle/" element={<Detalle />} />
+                    <Route path="/detalle/:id" element={<Detalle />} />
                     </Route>    
                     <Route path="*" element={ <Error/> } />                
                 </Routes>

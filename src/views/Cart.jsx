@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { CarritoContext } from '../context/CarritoProvider'
 import { NavLink } from 'react-router-dom';
+import ElementosCarrito from '../components/ElementosCarrito';
 
-export default function Cart() {
+function Cart() {
     
     const style = {
         width: '50rem'
@@ -10,9 +11,16 @@ export default function Cart() {
     
     const carritoContext = useContext(CarritoContext)
     const { carrito } = carritoContext 
-    console.log(carrito);
+    // const { contador } = carritoContext 
+    const { cantidad } = carritoContext 
+    const { vaciarCarrito } = carritoContext
 
-    return (
+    console.log(carrito);   
+    
+    const total = carrito.map(item => item.precio*cantidad).reduce((prev, curr) => prev + curr, 0);
+    console.log(total);
+    const total2 = total
+    return (        
         <div className="container-fluid" style={style}>            
             <div>
                 <table className="table">
@@ -24,22 +32,17 @@ export default function Cart() {
                             <th scope="col">Precio</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>                        
-                            <th scope="row">{carrito[0].id }</th>                            
-                            <td>{carrito[0].nombre}</td>
-                            <td>{carrito[0].cantidad }</td>
-                            <td>$ {carrito[0].precio}</td>                                  
-                        </tr>
-                    </tbody>
+                    <ElementosCarrito carrito={carrito} cantidad={cantidad} total={total}/>                   
                 </table>
-                <div> Total: $<span>{/* {() => precioTotal()} */}</span></div>
+                <h2> Total: $<span>{total2}</span></h2>
             </div>
             <div className='p-3'>
                 <button type="button" className="btn btn-secondary m-3" /* onclick={() => finalizarCompra()} */>Terminar compra</button>
-                <NavLink to="/productos"> <button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
-            <button type="button" className="btn btn-danger m-3" id="vaciar" /* onclick={() => vaciarCarrito()} */>Vaciar Carrito</button>
+                <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
+                <button type="button" className="btn btn-danger m-3" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
             </div>
         </div>
+        
     )
 }
+export default Cart
