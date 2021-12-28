@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import ItemDetail from './ItemDetail';
 
-function ItemDetailContainer() {
+function ItemDetailContainer( {id}) {
 
-    const [producto,setProducto]= useState(null)
+    const [state, setState]= useState(null)
     
     const productos = [
     {   id: 1,
@@ -11,6 +11,7 @@ function ItemDetailContainer() {
         tipo: "CENTRAL",
         stock: 200,
         precio: 12000,
+        cantidad: 0,
         img: "../images/Paneles y teclados/PC-732G-LED-3G-COM.jpg",
         desc: "Combo de alarma PC-732G con teclado LED y comunicador 3G-COM."
     },
@@ -20,6 +21,7 @@ function ItemDetailContainer() {
         tipo: "CENTRAL",
         stock: 112,
         precio: 18000,
+        cantidad: 0,
         img: "./images/Paneles y teclados/pc-900g-led.jpg",
         desc: "Panel de alarma Garnet con WiFi embebido, 32 Zonas, 4 Particiones, incluye teclado LED."
     },
@@ -29,6 +31,7 @@ function ItemDetailContainer() {
         tipo: "CENTRAL",
         stock: 15,
         precio: 15000,
+        cantidad: 0,
         img: "/images/Paneles y teclados/A2K4-NG-LCD.jpg",
         desc: "Central Cableada / Inalámbrica, 6 zonas + 1 en teclado, expandible a 8, 2 particiones."
     },
@@ -38,6 +41,7 @@ function ItemDetailContainer() {
         tipo: "CENTRAL",
         stock: 65,
         precio: 17000,
+        cantidad: 0,
         img: "/images/Paneles y teclados/A2K8-pc-860.jpg",
         desc: "Central Cableada con teclado, de 8 zonas expandibles a 32 y 4 particiones."
     },
@@ -47,6 +51,7 @@ function ItemDetailContainer() {
         tipo: "TECLADO",
         stock: 65,
         precio: 7000,
+        cantidad: 0,
         img: "/images/Paneles y teclados/G-LED732.jpg",
         desc: "Teclado Led 8 zonas compatible con paneles de alarma Garnet."
     },
@@ -56,6 +61,7 @@ function ItemDetailContainer() {
         tipo: "TECLADO",
         stock: 65,
         precio: 7500,
+        cantidad: 0,
         img: "/images/Paneles y teclados/G-LCD732.jpg",
         desc: "Teclado con display LCD compatible con paneles de alarma Garnet."
     },
@@ -65,6 +71,7 @@ function ItemDetailContainer() {
         tipo: "TECLADO",
         stock: 63,
         precio: 8000,
+        cantidad: 0,
         img: "/images/Paneles y teclados/G-LED732.jpg",
         desc: "Teclado con display LCD y receptor RF, compatible con paneles de alarma Garnet."
     },
@@ -74,6 +81,7 @@ function ItemDetailContainer() {
         tipo: "COMUNICADOR",
         stock: 65,
         precio: 4000,
+        cantidad: 0,
         img: "/images/comunicadores/3G-COM-G.jpg",
         desc: "Comunicador para paneles línea Garnet WiFi/3G."
     },
@@ -83,6 +91,7 @@ function ItemDetailContainer() {
         tipo: "COMUNICADOR",
         stock: 45,
         precio: 6000,
+        cantidad: 0,
         img: "/images/comunicadores/IP-500G.jpg",
         desc: "Comunicador IP WiFi para paneles línea Garnet."
     },
@@ -92,6 +101,7 @@ function ItemDetailContainer() {
         tipo: "COMUNICADOR",
         stock: 55,
         precio: 5500,
+        cantidad: 0,
         img: "/images/comunicadores/com-900.jpg",
         desc: "Modulo Comunicador 3G para PC-900."
     },
@@ -101,6 +111,7 @@ function ItemDetailContainer() {
         tipo: "SENSOR CABLEADO",
         stock: 100,
         precio: 3000,
+        cantidad: 0,
         img: "/images/Sensores/IR-1000.jpg",
         desc: "Detector doble infrarrojo para exteriores, cableado."
     },
@@ -110,6 +121,7 @@ function ItemDetailContainer() {
         tipo: "SENSOR CABLEADO",
         stock: 100,
         precio: 3500,
+        cantidad: 0,
         img: "/images/Sensores/IR-808.jpg",
         desc: "Detector infrarrojo de interior. Inmunidad a mascotas 18Kg."
     },
@@ -119,6 +131,7 @@ function ItemDetailContainer() {
         tipo: "SENSOR INALAMBRICO",
         stock: 100,
         precio: 4500,
+        cantidad: 0,
         img: "/images/Sensores/DGW-500.jpg",
         desc: "Digi Wireless. Detector infrarrojo pasivo digital inalámbrico."
     },
@@ -128,6 +141,7 @@ function ItemDetailContainer() {
         tipo: "SENSOR INALAMBRICO",
         stock: 100,
         precio: 5000,
+        cantidad: 0,
         img: "/images/Sensores/DGB-2-PET.jpg",
         desc: "Digi Wireless. Detector infrarrojo pasivo digital inalámbrico. Inmunidad a mascotas 18kg."
     },
@@ -137,6 +151,7 @@ function ItemDetailContainer() {
         tipo: "SIRENA EXTERIOR",
         stock: 100,
         "precio": 5000,
+        cantidad: 0,
         img: "/images/Sirenas/MP-300.jpg",
         desc: "Sirena Exterior magnetodinámica con Flash."
     },
@@ -146,6 +161,7 @@ function ItemDetailContainer() {
         tipo: "SIRENA INTERIOR",
         stock: 100,
         "precio": 4000,
+        cantidad: 0,
         img: "/images/Sirenas/MP-150.jpg",
         desc: "Sirena Exterior magnetodinámica."
     },
@@ -155,35 +171,38 @@ function ItemDetailContainer() {
         tipo: "SIRENA EXTERIOR",
         stock: 100,
         precio: 4200,
+        cantidad: 0,
         img: "/images/Sirenas/MP-200.jpg",
         desc: "Sirena Exterior doble Piezoeléctrica."        
     }]     
   
-    let promesa = new Promise((resolve, reject) => {
+    let promise = new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(productos);
+            resolve(productos[id]);
         }, 2000);
-    })
+    });
     
-    const obtenerProducto= async()=>{
-        try{
-            const producto= await promesa;
-            setProducto(producto);            
-        } catch(error){
-            throw error
-        } finally{
+    const getItem = async () => {
+        try {
+            const data = await promise;
+            setState(data);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            console.log("Termine");
         }
-    }
+    };
 
     useEffect(()=>{
-        obtenerProducto()        
+        getItem();        
     },[])
 
     return (
         <div className="container">            
-            {producto? 
-                <ItemDetail item={producto[1]} />
-            : <p><span className="spinner-border"></span>CARGANDO...</p>}    
+            {state ? (
+                <ItemDetail item={state} id={ id}/> )
+            : (<p><span className="spinner-border"></span>CARGANDO...</p>)}    
         </div>      
     )
 }

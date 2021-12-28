@@ -10,8 +10,7 @@ function Cart() {
     }
     
     const carritoContext = useContext(CarritoContext)
-    const { carrito } = carritoContext 
-    // const { contador } = carritoContext 
+    const { carrito } = carritoContext     
     const { cantidad } = carritoContext 
     const { vaciarCarrito } = carritoContext
 
@@ -20,6 +19,7 @@ function Cart() {
     const total = carrito.map(item => item.precio*cantidad).reduce((prev, curr) => prev + curr, 0);
     console.log(total);
     const total2 = total
+
     return (        
         <div className="container-fluid" style={style}>            
             <div>
@@ -32,7 +32,7 @@ function Cart() {
                             <th scope="col">Precio</th>
                         </tr>
                     </thead>
-                    <ElementosCarrito carrito={carrito} cantidad={cantidad} total={total}/>                   
+                    <ElementosCarrito total={total}/>                   
                 </table>
                 <h2> Total: $<span>{total2}</span></h2>
             </div>

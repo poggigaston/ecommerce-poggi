@@ -3,7 +3,7 @@ import ItemCount from './ItemCount';
 import src from "../assets/img";
 
 
-export default function ItemDetail({ item }) {
+export default function ItemDetail({ item, id }) {
     const style = {
         width: '45rem'        
     };
@@ -19,7 +19,7 @@ export default function ItemDetail({ item }) {
                     {/* <a className="btn btn-success">Agregar al Carrito</a> */}
                 </div>
             </div>    
-            <ItemCount stock={item.stock} initial={1} item={item}></ItemCount>
+            <ItemCount stock={item.stock} initial={1} item={item} id={id }/>
         </div>               
         
     );

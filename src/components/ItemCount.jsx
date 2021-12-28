@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { CarritoContext }  from '../context/CarritoProvider'
 import { NavLink } from 'react-router-dom';
     
-function ItemCount({ stock, initial, item }) {
+function ItemCount({ stock, initial, item, id }) {
     const style = {
         width: '45rem'        
     };
@@ -25,7 +25,7 @@ function ItemCount({ stock, initial, item }) {
                     <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRes()}>-</button><br />
                 </div>
                 <button className="btn btn-primary p-10" disabled={botonCart} onClick={() => addCarrito({item})}>Agregar al Carrito</button>
-                <NavLink to="/productos"> <button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
+                <NavLink id={id} to="/productos"> <button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
             </div>
         </div>
     )
