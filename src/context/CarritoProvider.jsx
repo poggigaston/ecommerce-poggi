@@ -49,19 +49,23 @@ const CarritoProvider = ({ children }) => {
 
     function addCarrito({ item }) {
         if (isInCart (item.id)) {
+            setCantidad(cantidad + contador);                      
             setCarrito([...carrito]);
-            setCantidad(cantidad +contador);
             setCount(1);
         } else {
+            item.cantidad = contador;
+            item.precio = item.precio * item.cantidad;
             setCarrito([...carrito, item]);
-            setCantidad(item.cantidad + 1);
             setCount(1);            
         }
     }
 
     function eliminarItem(el) {    
-        if (cantidad > 1) {
-            setCantidad(cantidad - 1);            
+        if (el.cantidad > 1) {
+            console.log(el);            
+            el.cantidad = el.cantidad - 1
+            el.precio = el.precio - (el.precio/ el.cantidad) 
+            setCarrito([...carrito]);          
         } else {
             let indice = carrito.indexOf(el);
             if (indice !== -1) {

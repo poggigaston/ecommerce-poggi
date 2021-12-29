@@ -14,8 +14,8 @@ const ElementosCarrito = ({ total, cantidad, carrito}) => {
                 <tr>
                     <th scope="row">{el.id }</th>                            
                     <td>{el.nombre}</td>
-                    <td>{el.cantidad + cantidad}</td>
-                    <td>{el.precio * cantidad}<button onClick={() => eliminarItem(el)}><i class="fas fa-trash"></i></button></td>                               
+                    <td>{el.cantidad}</td>
+                    <td>{el.precio}<button onClick={() => eliminarItem(el)}><i class="fas fa-trash"></i></button></td>                               
                 </tr>                
             </tbody>
         ))}
