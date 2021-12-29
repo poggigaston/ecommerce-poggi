@@ -164,7 +164,7 @@ const ItemListContainer = ({ children, greeting }) => {
     let promise = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(productos)
-        },2000)
+        },500)
     })
 
 

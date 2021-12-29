@@ -10,7 +10,16 @@ const CarritoProvider = ({ children }) => {
     const [botonResta, setBotonResta] = useState("");
     const [botonSuma, setBotonSuma] = useState("");
     const [carrito, setCarrito] = useState([]);
-    const [cantidad, setCantidad] = useState(1);
+    const [cantidad, setCantidad] = useState(0);
+    const [cantidadCarrito, setCantidadCarrito] = useState(0);
+
+    const isInCart = (itemID) => carrito.some((product) => product.id === itemID);
+    
+    const handleCart = (contador, item) => {
+        item.cantidad = contador;
+        setCarrito([...carrito, item]);
+        setCantidadCarrito(cantidadCarrito + contador);
+    };
 
     function onSum({ stock }) {
         if (contador < stock) {
@@ -39,25 +48,27 @@ const CarritoProvider = ({ children }) => {
     }
 
     function addCarrito({ item }) {
-        let isInCart = false;
-        if (isInCart) {
-            setCantidad(cantidad + contador);
+        if (isInCart (item.id)) {
+            setCarrito([...carrito]);
+            setCantidad(cantidad +contador);
             setCount(1);
         } else {
             setCarrito([...carrito, item]);
-            setCantidad(item.cantidad + contador);
+            setCantidad(item.cantidad + 1);
             setCount(1);            
         }
     }
 
-    function eliminarItem(num) {
+    function eliminarItem(el) {    
         if (cantidad > 1) {
-            setCantidad(cantidad - 1);
+            setCantidad(cantidad - 1);            
         } else {
-            let indice = carrito.indexOf(num);
+            let indice = carrito.indexOf(el);
             if (indice !== -1) {
-                carrito.splice(indice, 1);
-                setCarrito([]);
+                const itemToDelete = carrito.find((e) => e.id === el.id);
+                const newArray = carrito.filter((item) => item.id !== el.id);
+                setCarrito(newArray);
+                setCantidad(cantidad - itemToDelete.cantidad)
                 console.log(carrito);    
             }            
         }

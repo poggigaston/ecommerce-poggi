@@ -24,7 +24,7 @@ function ItemCount({ stock, initial, item, id }) {
                     <span className="p-5">{contador}</span>
                     <button className="btn btn-outline-secondary p-10" disabled={botonResta} onClick={() => onRes()}>-</button><br />
                 </div>
-                <button className="btn btn-primary p-10" disabled={botonCart} onClick={() => addCarrito({item})}>Agregar al Carrito</button>
+                <button className="btn btn-primary p-10" disabled={botonCart} onClick={() => addCarrito({item, initial})}>Agregar al Carrito</button>
                 <NavLink id={id} to="/productos"> <button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
             </div>
         </div>

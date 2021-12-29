@@ -179,7 +179,7 @@ function ItemDetailContainer( {id}) {
     let promise = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(productos[id]);
-        }, 2000);
+        }, 500);
     });
     
     const getItem = async () => {
