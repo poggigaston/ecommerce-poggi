@@ -189,7 +189,6 @@ const ItemListContainer = ({ children, greeting }) => {
         <div className="container-fluid my-4">            
             <h1>{greeting}</h1>
             <ItemList items={data} />           
-            {/* <ItemDetailContainer filtro={4}/>            */}
             {children}        
         </div>
     );

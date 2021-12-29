@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CarritoContext } from '../context/CarritoProvider'
+import { NavLink } from 'react-router-dom';
+import ElementosCarrito from '../components/ElementosCarrito';
 
-export default function Cart(carrito) {
+function Cart() {
+    
     const style = {
         width: '50rem'
     }
     
-    return (
+    const carritoContext = useContext(CarritoContext)
+    const { carrito } = carritoContext     
+    const { cantidad } = carritoContext 
+    const { vaciarCarrito } = carritoContext
+
+    console.log(carrito);   
+    
+    const total = carrito.map(item => item.precio*cantidad).reduce((prev, curr) => prev + curr, 0);
+    console.log(total);
+    const total2 = total
+
+    return (        
         <div className="container-fluid" style={style}>            
             <div>
                 <table className="table">
@@ -17,18 +32,17 @@ export default function Cart(carrito) {
                             <th scope="col">Precio</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <div>
-                        </div>                       
-                    </tbody>
+                    <ElementosCarrito total={total}/>                   
                 </table>
-                <div> Total: $<span>{/* {() => precioTotal()} */}</span></div>
+                <h2> Total: $<span>{total2}</span></h2>
             </div>
             <div className='p-3'>
                 <button type="button" className="btn btn-secondary m-3" /* onclick={() => finalizarCompra()} */>Terminar compra</button>
-                <button type="button" className="btn btn-secondary m-3">Seguir Comprando</button>
-            <button type="button" className="btn btn-danger m-3" id="vaciar" /* onclick={() => vaciarCarrito()} */>Vaciar Carrito</button>
+                <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
+                <button type="button" className="btn btn-danger m-3" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
             </div>
         </div>
+        
     )
 }
+export default Cart

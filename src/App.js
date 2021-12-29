@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       {/* <Home /> */}
-      {/* <Rutas /> */}
+      <Rutas />
       {/* <ItemListContainer greeting="Aca van a ir mis productos"></ItemListContainer> */}
-      <ItemDetailContainer />
+      {/* <ItemDetailContainer /> */}
       {/* <Footer/>  */}
     </div>
   );

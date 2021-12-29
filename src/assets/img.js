@@ -33,5 +33,5 @@ export default [
     DGW500PET,
     MP300,
     MP150,
-    MP200,    
+    MP200    
 ]
