@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
     
 function ItemCount({ stock, initial, item, id }) {
     const style = {
-        width: '45rem'        
+        width: '40rem'        
     };
     const carritoContext = useContext(CarritoContext)
     const { addCarrito } = carritoContext 

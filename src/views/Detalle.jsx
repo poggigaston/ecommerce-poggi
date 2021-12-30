@@ -7,8 +7,7 @@ export default function Detalle() {
     const { id } = useParams();
 
     return (
-        <div>
-            <h1>ProfilPage:{ id}</h1>
+        <div className="container-fluid" style={{paddingLeft:"25%"}}>
             <ItemDetailContainer id={id}/>
         </div>
     )

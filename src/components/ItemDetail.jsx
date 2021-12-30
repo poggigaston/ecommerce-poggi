@@ -5,7 +5,7 @@ import src from "../assets/img";
 
 export default function ItemDetail({ item, id }) {
     const style = {
-        width: '45rem'        
+        width: '40rem'        
     };
        
     return (

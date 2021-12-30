@@ -199,7 +199,7 @@ function ItemDetailContainer( {id}) {
     },[])
 
     return (
-        <div className="container">            
+        <div className="">            
             {state ? (
                 <ItemDetail item={state} id={ id}/> )
             : (<p><span className="spinner-border"></span>CARGANDO...</p>)}    
