@@ -10,11 +10,8 @@ function Cart() {
     }
     
     const carritoContext = useContext(CarritoContext)
-    const { carrito, cantidad, vaciarCarrito, eliminarItem } = carritoContext     
-    
-    console.log(carrito);   
-    console.log(cantidad);   
-    
+    const { carrito, cantidad, vaciarCarrito } = carritoContext     
+        
     const total = carrito.map(item => item.precio*cantidad).reduce((prev, curr) => prev + curr, 0);
     console.log(total);
     const total2 = total
@@ -31,7 +28,7 @@ function Cart() {
                             <th scope="col">Precio</th>
                         </tr>
                     </thead>
-                    <ElementosCarrito total={total} cantidad={cantidad} eliminar= {eliminarItem} carrito= {carrito}/>                   
+                    <ElementosCarrito carrito= {carrito}/>                   
                 </table>
                 <h2> Total: $<span>{total2}</span></h2>
             </div>

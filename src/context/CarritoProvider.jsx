@@ -10,17 +10,9 @@ const CarritoProvider = ({ children }) => {
     const [botonResta, setBotonResta] = useState("");
     const [botonSuma, setBotonSuma] = useState("");
     const [carrito, setCarrito] = useState([]);
-    const [cantidad, setCantidad] = useState(0);
-    const [cantidadCarrito, setCantidadCarrito] = useState(0);
-
-    const isInCart = (itemID) => carrito.some((product) => product.id === itemID);
+    const [isInCart, setIsInCart] = useState(false);
     
-    const handleCart = (contador, item) => {
-        item.cantidad = contador;
-        setCarrito([...carrito, item]);
-        setCantidadCarrito(cantidadCarrito + contador);
-    };
-
+  
     function onSum({ stock }) {
         if (contador < stock) {
             setCount(contador + 1);
@@ -46,15 +38,24 @@ const CarritoProvider = ({ children }) => {
         setCarrito([]);
         setCount(1);        
     }
-
+    
+// SEGUIR CON ESTO!!! NO TOMA EL ISINCART
+    
     function addCarrito({ item }) {
-        if (isInCart (item.id)) {
-            setCantidad(cantidad + contador);                      
-            setCarrito([...carrito]);
+       function a (item) {
+        if (carrito.some((product) => product.id === item)) {
+            setIsInCart(true)
+        }
+        };
+        a()
+        console.log(isInCart);
+        if (isInCart == true) { 
+            item.cantidad = item.cantidad + 1
+            item.precio = item.cantidad * item.precio
+            // setCarrito([...carrito]);
             setCount(1);
         } else {
-            item.cantidad = contador;
-            item.precio = item.precio * item.cantidad;
+            item.cantidad = contador;           
             setCarrito([...carrito, item]);
             setCount(1);            
         }
@@ -62,29 +63,22 @@ const CarritoProvider = ({ children }) => {
 
     function eliminarItem(el) {    
         if (el.cantidad > 1) {
-            console.log(el);            
+            console.log(el);    
             el.cantidad = el.cantidad - 1
-            el.precio = el.precio - (el.precio * 1) 
             setCarrito([...carrito]);          
         } else {
-            let indice = carrito.indexOf(el);
-
-            el.precio = el.precio * 1
-            if (indice !== -1) {
-                const itemToDelete = carrito.find((e) => e.id === el.id);
+            let indice = carrito.indexOf(el);            
+            if (indice !== -1) {                
                 const newArray = carrito.filter((item) => item.id !== el.id);
-                setCarrito(newArray);
-                setCantidad(cantidad - itemToDelete.cantidad)
+                setCarrito(newArray);                
                 console.log(carrito);    
             }            
         }
     }
-    
-    
-    
+        
         return (
 
-            <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, botonResta, botonCart, botonSuma, contador, vaciarCarrito, cantidad, eliminarItem }}>
+            <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, botonResta, botonCart, botonSuma, contador, vaciarCarrito, eliminarItem }}>
                 {children}
             </CarritoContext.Provider>
         );

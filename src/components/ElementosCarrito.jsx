@@ -1,11 +1,10 @@
 import React, {useContext} from 'react'
 import { CarritoContext }  from '../context/CarritoProvider'
 
-const ElementosCarrito = ({ total, cantidad, carrito}) => {    
+const ElementosCarrito = ({ carrito}) => {    
     
     const carritoContext = useContext(CarritoContext)    
-    const { eliminarItem} = carritoContext        
-    
+    const { eliminarItem} = carritoContext   
         
     return (
         <>{carrito.length == 0 ?
@@ -15,7 +14,7 @@ const ElementosCarrito = ({ total, cantidad, carrito}) => {
                     <th scope="row">{el.id }</th>                            
                     <td>{el.nombre}</td>
                     <td>{el.cantidad}</td>
-                    <td>{el.precio}<button onClick={() => eliminarItem(el)}><i class="fas fa-trash"></i></button></td>                               
+                    <td>$ {el.precio * el.cantidad}<button onClick={() => eliminarItem(el)}><i class="fas fa-trash"></i></button></td>                               
                 </tr>                
             </tbody>
         ))}
