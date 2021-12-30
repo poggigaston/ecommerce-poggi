@@ -64,10 +64,12 @@ const CarritoProvider = ({ children }) => {
         if (el.cantidad > 1) {
             console.log(el);            
             el.cantidad = el.cantidad - 1
-            el.precio = el.precio - (el.precio/ el.cantidad) 
+            el.precio = el.precio - (el.precio * 1) 
             setCarrito([...carrito]);          
         } else {
             let indice = carrito.indexOf(el);
+
+            el.precio = el.precio * 1
             if (indice !== -1) {
                 const itemToDelete = carrito.find((e) => e.id === el.id);
                 const newArray = carrito.filter((item) => item.id !== el.id);
