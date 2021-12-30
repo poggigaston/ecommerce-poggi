@@ -10,8 +10,10 @@ const CarritoProvider = ({ children }) => {
     const [botonResta, setBotonResta] = useState("");
     const [botonSuma, setBotonSuma] = useState("");
     const [carrito, setCarrito] = useState([]);
-    const [isInCart, setIsInCart] = useState(false);
+    // const [isInCart, setIsInCart] = useState(false);
     
+    const isInCart = (itemID) => carrito.some((product) => product.id === itemID);
+
   
     function onSum({ stock }) {
         if (contador < stock) {
@@ -34,25 +36,18 @@ const CarritoProvider = ({ children }) => {
             setCount(contador - 1);
         }
     }
+    
     function vaciarCarrito() {
         setCarrito([]);
         setCount(1);        
-    }
+    }    
     
-// SEGUIR CON ESTO!!! NO TOMA EL ISINCART
-    
-    function addCarrito({ item }) {
-       function a (item) {
-        if (carrito.some((product) => product.id === item)) {
-            setIsInCart(true)
-        }
-        };
-        a()
-        console.log(isInCart);
-        if (isInCart == true) { 
-            item.cantidad = item.cantidad + 1
-            item.precio = item.cantidad * item.precio
-            // setCarrito([...carrito]);
+    function addCarrito({ item }) {       
+        console.log(isInCart(item.id));
+        if (isInCart(item.id)) {
+            let arr = carrito.find((i) => i.id === item.id);
+            arr.cantidad = arr.cantidad + contador;
+            setCarrito([...carrito]);             
             setCount(1);
         } else {
             item.cantidad = contador;           

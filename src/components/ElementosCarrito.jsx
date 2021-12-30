@@ -7,7 +7,7 @@ const ElementosCarrito = ({ carrito}) => {
     const { eliminarItem} = carritoContext   
         
     return (
-        <>{carrito.length == 0 ?
+        <>{carrito.length === 0 ?
             <tbody><td colspan="4"><h3>No hay elementos en el carrito</h3></td></tbody> : carrito.map((el) => (
             <tbody>
                 <tr>
