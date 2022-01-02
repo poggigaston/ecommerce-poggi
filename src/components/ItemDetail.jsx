@@ -7,7 +7,7 @@ export default function ItemDetail({ item, id }) {
     const style = {
         width: '40rem'        
     };
-       
+     
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">
             <div className="card" style={style}>
@@ -20,8 +20,7 @@ export default function ItemDetail({ item, id }) {
                 </div>
             </div>    
             <ItemCount stock={item.stock} initial={1} item={item} id={id }/>
-        </div>               
-        
+        </div>    
     );
 }
 

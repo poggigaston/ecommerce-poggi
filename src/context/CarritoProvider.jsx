@@ -1,5 +1,6 @@
 import { useState, createContext } from 'react';
-
+import Swal from 'sweetalert2';
+import src from "../assets/img";
 
 export const CarritoContext = createContext();
 
@@ -9,8 +10,7 @@ const CarritoProvider = ({ children }) => {
     const [botonCart, setBotonCart] = useState("");
     const [botonResta, setBotonResta] = useState("");
     const [botonSuma, setBotonSuma] = useState("");
-    const [carrito, setCarrito] = useState([]);
-    // const [isInCart, setIsInCart] = useState(false);
+    const [carrito, setCarrito] = useState([]);    
     
     const isInCart = (itemID) => carrito.some((product) => product.id === itemID);
 
@@ -49,10 +49,28 @@ const CarritoProvider = ({ children }) => {
             arr.cantidad = arr.cantidad + contador;
             setCarrito([...carrito]);             
             setCount(1);
+            Swal.fire({
+            position: 'top-end',
+            imageUrl:  src[item.id],
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            title: "El producto "+ arr.nombre + " se agrego nuevamente al carrito",
+            showConfirmButton: false,
+            timer: 3500
+            })
         } else {
             item.cantidad = contador;           
             setCarrito([...carrito, item]);
-            setCount(1);            
+            setCount(1);
+            Swal.fire({
+            title: 'Genial!',
+            text: "El producto "+ item.nombre + " se agrego correctamente al carrito",
+            imageUrl: src[item.id],
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+        })
         }
     }
 
