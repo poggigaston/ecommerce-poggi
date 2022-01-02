@@ -29,7 +29,7 @@ const ItemListContainer = ({ children, greeting }) => {
     }, [])
    
     return (
-        <div className="container-fluid my-4">            
+        <div className="container-fluid" style={{paddingTop:"15px", paddingBottom:"50px"}}>            
             <h1>{greeting}</h1>
             <ItemList items={data} />           
             {children}        

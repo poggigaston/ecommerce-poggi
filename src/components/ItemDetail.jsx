@@ -9,7 +9,7 @@ export default function ItemDetail({ item, id }) {
     };
      
     return (
-        <div className="col col-md-6 col-lg-4 col- my-4">
+        <div className="col col-md-6 col-lg-4 col- m-0">
             <div className="card" style={style}>
                 <img src={src[item.id]} className="card-img-top" alt={item.nombre}></img>
                 <div className="card-body">

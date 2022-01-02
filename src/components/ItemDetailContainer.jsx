@@ -29,7 +29,7 @@ function ItemDetailContainer( {id}) {
     },[])
 
     return (
-        <div className="">            
+        <div className="container-fluid" style={{paddingTop:"15px", paddingBottom:"50px"}}>            
             {state ? (
                 <ItemDetail item={state} id={ id}/> )
             : (<p><span className="spinner-border"></span>CARGANDO...</p>)}    

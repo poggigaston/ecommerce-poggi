@@ -1,0 +1,9 @@
+.contenedorCat {
+    background-image: url(../assets/images/fondo2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    padding-top: 15px;
+    padding-bottom: 150px;
+}

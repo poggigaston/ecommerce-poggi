@@ -4,6 +4,7 @@ import panytec from "../assets/images/Paneles-y-Teclados.png";
 import comu from "../assets/images/Comunicadores.png";
 import senso from "../assets/images/Sensores-Cableados.png";
 import sire from "../assets/images/Sirenas.png";
+import "../views/home.css";
 
 
 export default function SelectorInicio () {
@@ -42,7 +43,7 @@ export default function SelectorInicio () {
                     <NavLink to={inicio.link}>
                         <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{inicio.titulo}</button>
                     </NavLink>
-                    <img id={inicio.idImagen} src={inicio.linkImagen} alt=""></img>
+                    <img id={inicio.idImagen} src={inicio.linkImagen} alt={inicio.titulo}></img>
                 </div>
             ))}            
         </div>

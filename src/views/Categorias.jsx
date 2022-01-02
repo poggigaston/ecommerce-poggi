@@ -2,6 +2,8 @@ import React from 'react'
 import { useParams } from "react-router-dom";
 import ItemList from '../components/ItemList';
 import productos from './../assets/Productos'
+import './categorias.css'
+
 
 export default function Categorias() {
   
@@ -11,7 +13,7 @@ export default function Categorias() {
   console.log(productos)
   
     return (
-      <div className='container-fluid'>                 
+      <div className='container-fluid contenedorCat'>                 
         <ItemList items={filtrado} />         
       </div>
     )
