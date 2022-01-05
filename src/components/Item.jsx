@@ -11,7 +11,7 @@ export default function Item({ item }) {
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">           
             <div className="card" style={style}>
-                <img src={src[item.id]} className="card-img-top" alt={item.nombre}></img>
+                <img src={src[item.img]} className="card-img-top" alt={item.nombre}></img>
                 <div className="card-body">
                     <h5 className="card-title">{item.nombre}</h5>
                     {/* <p className="card-text">{item.desc}<br></br><br></br></p> */}

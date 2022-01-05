@@ -1,31 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import ItemList from './ItemList';
-import productos  from './../assets/Productos';
-
+import { collection, getDocs } from "firebase/firestore"
+import db from "../service"
+// import productos  from './../assets/Productos';
 
 const ItemListContainer = ({ children, greeting }) => {
         
-    const [data, setData] = useState(null);
-
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(productos)
-        },500)
-    })
-
-    const resolverArray = async () => {
-        try {
-            const data = await promise;            
-            setData(data)
-        } catch (err) {
-            console.log(err)
-        } finally {
-            console.log("la peticion se termino")           
-        }
-    }
-
+    const [data, setData] = useState([]);
+    
     useEffect(() => {
-        resolverArray()        
+        const itemsCollection = collection(db, "items");
+        getDocs(itemsCollection).then((snapshot) => {
+            setData(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })));            
+        })               
     }, [])
    
     return (

@@ -1,37 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import ItemDetail from './ItemDetail';
-import productos from './../assets/Productos';
+import { getDoc, doc} from "firebase/firestore"
+import db from "../service"
+// import productos from './../assets/Productos';
 
 function ItemDetailContainer( {id}) {
 
-    const [state, setState]= useState(null)    
+    const [state, setState]= useState([])      
     
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(productos[id]);
-        }, 500);
-    });
-    
-    const getItem = async () => {
-        try {
-            const data = await promise;
-            setState(data);
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            console.log("Termine");
-        }
-    };
-
-    useEffect(()=>{
-        getItem();        
-    },[])
+    useEffect(() => {        
+        const itemRef = doc(db, "items", `${id}` );
+        getDoc(itemRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setState({ id: doc.id, ...snapshot.data()});
+            }            
+        })               
+    }, []) 
 
     return (
         <div className="container-fluid" style={{paddingTop:"15px", paddingBottom:"50px"}}>            
             {state ? (
-                <ItemDetail item={state} id={ id}/> )
+                <ItemDetail item={state} id={id}/> )
             : (<p><span className="spinner-border"></span>CARGANDO...</p>)}    
         </div>      
     )
