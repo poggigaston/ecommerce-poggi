@@ -51,7 +51,7 @@ const CarritoProvider = ({ children }) => {
             setCount(1);
             Swal.fire({
             position: 'top-end',
-            imageUrl:  src[item.id],
+            imageUrl:  src[item.img],
             imageWidth: 400,
             imageHeight: 200,
             imageAlt: 'Custom image',
@@ -66,7 +66,7 @@ const CarritoProvider = ({ children }) => {
             Swal.fire({
             title: 'Genial!',
             text: "El producto "+ item.nombre + " se agrego correctamente al carrito",
-            imageUrl: src[item.id],
+            imageUrl: src[item.img],
             imageWidth: 400,
             imageHeight: 200,
             imageAlt: 'Custom image',

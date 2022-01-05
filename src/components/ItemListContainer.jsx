@@ -6,12 +6,12 @@ import db from "../service"
 
 const ItemListContainer = ({ children, greeting }) => {
         
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     
     useEffect(() => {
         const itemsCollection = collection(db, "items");
         getDocs(itemsCollection).then((snapshot) => {
-            setData(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })));            
+            setData(snapshot.docs.map((snapshot) => ({id: snapshot.id, ...snapshot.data() })));            
         })               
     }, [])
    

@@ -11,7 +11,7 @@ const ElementosCarrito = ({ carrito}) => {
             <tbody><td colspan="4"><h3>No hay elementos en el carrito</h3></td></tbody> : carrito.map((el) => (
             <tbody>
                 <tr>
-                    <th scope="row">{el.id }</th>                            
+                    <th scope="row">{el.img }</th>                            
                     <td>{el.nombre}</td>
                     <td>{el.cantidad}</td>
                     <td>$ {el.precio * el.cantidad}<button onClick={() => eliminarItem(el)}><i class="fas fa-trash"></i></button></td>                               

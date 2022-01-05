@@ -20,7 +20,7 @@ export default function Rutas() {
                     <Route index element={<Home/>} />                
                     <Route path="/cart" element={<Cart/>} />                
                     <Route path="/contacto" element={<Contacto/>} />                
-                    <Route path="/categorias/:category" element={<Categorias/>} />                
+                    <Route path="/categorias/:categoria" element={<Categorias/>} />                
                     <Route path="/nosotros" element={<Nosotros/>} />                
                     <Route path="/productos" element={<Productos/>} />                
                     <Route exact path="/detalle/:id" element={<Detalle />} />

@@ -6,7 +6,8 @@ import ElementosCarrito from '../components/ElementosCarrito';
 function Cart() {
     
     const style = {
-        width: '50rem'
+        width: '50rem',
+        height: '85vh'
     }
     
     const carritoContext = useContext(CarritoContext)

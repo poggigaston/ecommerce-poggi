@@ -6,13 +6,13 @@ import db from "../service"
 
 function ItemDetailContainer( {id}) {
 
-    const [state, setState]= useState([])      
+    const [state, setState]= useState(null)      
     
     useEffect(() => {        
         const itemRef = doc(db, "items", `${id}` );
-        getDoc(itemRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                setState({ id: doc.id, ...snapshot.data()});
+        getDoc(itemRef).then((doc) => {
+            if (doc.exists()) {
+                setState({ id: doc.id, ...doc.data()});
             }            
         })               
     }, []) 
