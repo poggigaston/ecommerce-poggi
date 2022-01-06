@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { CarritoContext } from '../context/CarritoProvider'
-import { NavLink } from 'react-router-dom';
 import ElementosCarrito from '../components/ElementosCarrito';
 import Formulario from '../components/Formulario';
 import './cart.css'
@@ -8,7 +7,7 @@ import './cart.css'
 function Cart() {
     
     const carritoContext = useContext(CarritoContext)
-    const { carrito, vaciarCarrito } = carritoContext      
+    const { carrito } = carritoContext      
      
     let precio = carrito.map((e) => (e.precio * e.cantidad))
     let total2 = precio.reduce((a, b) => a + b, 0);
@@ -16,7 +15,7 @@ function Cart() {
 
     return (        
         <div className="container-fluid carrito">            
-            <div>
+            <div className='tabla'>
                 <table className="table">
                     <thead>
                         <tr>
@@ -28,13 +27,10 @@ function Cart() {
                     </thead>
                     <ElementosCarrito carrito= {carrito}/>                   
                 </table>                
-            <h2> Total: $ {total2}</h2>
+                <h2> Total: $ {total2}</h2>
             </div>
-            <Formulario />
-            <div className='p-3'>
-                {/* <button type="button" className="btn btn-secondary m-3"  onclick={() => finalizarCompra()} >Terminar compra</button> */}
-                <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
-                <button type="button" className="btn btn-danger m-3" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
+            <div className='p-4'>
+                <Formulario total={total2} compra={carrito}/>
             </div>
         </div>        
     )
