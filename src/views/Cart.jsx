@@ -2,13 +2,10 @@ import React, { useContext } from 'react'
 import { CarritoContext } from '../context/CarritoProvider'
 import { NavLink } from 'react-router-dom';
 import ElementosCarrito from '../components/ElementosCarrito';
+import Formulario from '../components/Formulario';
+import './cart.css'
 
 function Cart() {
-    
-    const style = {
-        width: '50rem',
-        height: '85vh'
-    }
     
     const carritoContext = useContext(CarritoContext)
     const { carrito, vaciarCarrito } = carritoContext      
@@ -18,7 +15,7 @@ function Cart() {
     console.log(total2 )    
 
     return (        
-        <div className="container-fluid" style={style}>            
+        <div className="container-fluid carrito">            
             <div>
                 <table className="table">
                     <thead>
@@ -33,8 +30,9 @@ function Cart() {
                 </table>                
             <h2> Total: $ {total2}</h2>
             </div>
+            <Formulario />
             <div className='p-3'>
-                <button type="button" className="btn btn-secondary m-3" /* onclick={() => finalizarCompra()} */>Terminar compra</button>
+                {/* <button type="button" className="btn btn-secondary m-3"  onclick={() => finalizarCompra()} >Terminar compra</button> */}
                 <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
                 <button type="button" className="btn btn-danger m-3" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
             </div>
