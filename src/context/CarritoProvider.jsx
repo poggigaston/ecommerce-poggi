@@ -6,35 +6,21 @@ export const CarritoContext = createContext();
 
 const CarritoProvider = ({ children }) => {
     
-    const [contador, setCount] = useState(1);
-    const [botonCart, setBotonCart] = useState("");
-    const [botonResta, setBotonResta] = useState("");
-    const [botonSuma, setBotonSuma] = useState("");
+    const [contador, setCount] = useState(1);    
     const [carrito, setCarrito] = useState([]);    
     
     const isInCart = (itemID) => carrito.some((product) => product.id === itemID);
-
   
     function onSum({ stock }) {
         if (contador < stock) {
-            setCount(contador + 1);
-            setBotonSuma("");
-            setBotonResta("");
-            setBotonCart("");
-        } else {
-            setBotonSuma(true);
-        }
+            setCount(contador + 1);            
+        }        
     }
 
     function onRes() {
         if (contador > 1) {
-            setCount(contador - 1);
-            setBotonSuma("");
-        } else {
-            setBotonCart(true);
-            setBotonResta(true);
-            setCount(contador - 1);
-        }
+            setCount(contador - 1);            
+        }        
     }
     
     function vaciarCarrito() {
@@ -91,7 +77,7 @@ const CarritoProvider = ({ children }) => {
         
         return (
 
-            <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, botonResta, botonCart, botonSuma, contador, vaciarCarrito, eliminarItem }}>
+            <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, contador, vaciarCarrito, eliminarItem, isInCart }}>
                 {children}
             </CarritoContext.Provider>
         );

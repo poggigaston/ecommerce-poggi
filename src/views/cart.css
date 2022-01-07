@@ -1,7 +1,12 @@
 .carrito{
     height: 110vh;
     width: 50rem;
+    display: inline;
     
+    align-items: center;   
+}
+.carro{
+    width: 400px;
 }
 .tabla{
     border-style: ridge;

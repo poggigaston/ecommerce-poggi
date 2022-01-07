@@ -26,19 +26,21 @@ const Formulario = ({total, compra}) => {
 
     const [error, setError] = useState({})
     const { buyer: { nombre, apellido, telefono, email } } = formulario;
-
+    const validar = (campos) => {
+        let invalido = false;
+        campos.map((campo) => campo === "" ? invalido = true : invalido = false)
+        return invalido
+    }
     const onSubmit = (e) => {
-        e.preventDefault()
-        generarTicket(formulario)
-        console.log(formulario);
-        // if (validarTodoLleno([nombre, apellido, telefono, email])) {
-        //     Swal.fire({
-        //         title: "Oops!",
-        //         text: "Faltan campos por completar",
-        //         icon:"error"
-        //     })
-        //     return
-        // }
+        e.preventDefault()        
+        if (validar([nombre, apellido, telefono, email])) {
+            Swal.fire({
+                title: "Oops!",
+                text: "Faltan campos por completar",
+                icon:"error"
+            })
+            return
+        }
         Swal.fire({
             title: "Genial",
             text: "Su orden de compra se genero con exito",
@@ -54,17 +56,17 @@ const Formulario = ({total, compra}) => {
         },
         total: 0,
         items: []
-        })    
+        })
+        generarTicket(formulario)
+        console.log(formulario);
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormulario({
             ...formulario,
-            buyer: {
-                ...formulario.buyer,
-                [name]:value
-            }
+            buyer: {...formulario.buyer,
+                [name]:value}
         })
     }
 
@@ -97,7 +99,7 @@ const Formulario = ({total, compra}) => {
     };
 
     return (
-        <div className='formulario'><h3>Datos del Comprador</h3>
+        <div className='formulario justify-content-center align-self-center'><h3>Datos del Comprador</h3>
             <form onSubmit={onSubmit} >
                 <div className="form-group" id="form">
                     <div>
