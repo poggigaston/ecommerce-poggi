@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemList from '../components/ItemList';
 import { getDocs, collection, query, where} from "firebase/firestore"
 import db from "../service"
-import './categorias.css'
+import './Styles/categorias.css'
 
 export default function Categorias() {
   

@@ -2,11 +2,10 @@ import React, { useContext } from 'react'
 import { CarritoContext }  from '../context/CarritoProvider'
 import { NavLink } from 'react-router-dom';
     
-function ItemCount({ stock, initial, item }) {
+function ItemCount({ stock, initial, item }) {    
     
-    // const [state, setState] = setState("none")
     const style = {
-        width: '40rem'        
+        maxWidth: '40rem'        
     };
     const carritoContext = useContext(CarritoContext)
     const { addCarrito } = carritoContext 
@@ -15,7 +14,7 @@ function ItemCount({ stock, initial, item }) {
     const { contador} = carritoContext    
    
     return (
-        <div className="card" style={style}>
+        <div className="container-fluid card" style={style}>
             <p className="m-0 pt-3">Stock {stock}</p>
             <div className="card-body" style={style}>
                 <div className="p-3 ">

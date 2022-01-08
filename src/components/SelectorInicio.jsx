@@ -4,7 +4,7 @@ import panytec from "../assets/images/Paneles-y-Teclados.png";
 import comu from "../assets/images/Comunicadores.png";
 import senso from "../assets/images/Sensores-Cableados.png";
 import sire from "../assets/images/Sirenas.png";
-import "../views/home.css";
+import "../views/Styles/home.css";
 
 
 export default function SelectorInicio () {

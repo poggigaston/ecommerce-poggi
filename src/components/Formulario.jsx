@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { CarritoContext } from '../context/CarritoProvider'
-import './formulario.css'
+import './Styles/formulario.css'
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import db from "../service"
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc, docRef, documentId } from "firebase/firestore";
 
 
 
@@ -25,12 +25,15 @@ const Formulario = ({total, compra}) => {
     })
 
     const [error, setError] = useState({})
+    
     const { buyer: { nombre, apellido, telefono, email } } = formulario;
+    
     const validar = (campos) => {
         let invalido = false;
         campos.map((campo) => campo === "" ? invalido = true : invalido = false)
         return invalido
     }
+    
     const onSubmit = (e) => {
         e.preventDefault()        
         if (validar([nombre, apellido, telefono, email])) {
@@ -38,25 +41,14 @@ const Formulario = ({total, compra}) => {
                 title: "Oops!",
                 text: "Faltan campos por completar",
                 icon:"error"
-            })
-            return
+            })    
         }
         Swal.fire({
             title: "Genial",
             text: "Su orden de compra se genero con exito",
             icon: "success"
         });
-        vaciarCarrito()
-        setFormulario({
-        buyer: {
-            nombre: "",
-            apellido: "",
-            telefono: "",
-            email: "",
-        },
-        total: 0,
-        items: []
-        })
+        vaciarCarrito()    
         generarTicket(formulario)
         console.log(formulario);
     }
@@ -79,15 +71,15 @@ const Formulario = ({total, compra}) => {
         setError({})
     }  
     
-    const generarTicket = async ( formulario ) => {
-        try {
+    const generarTicket = async ( formulario) => {
+        try {    
             const col = collection(db, "ordenes")
-            await addDoc(col, formulario)
+            await addDoc(col, formulario);    
         } catch (error) {
             console.log(error);
         }
     }
-
+    
     const actualizarItem = async (id) => {
         const ordenDoc = doc(db, "items", id);
         try {

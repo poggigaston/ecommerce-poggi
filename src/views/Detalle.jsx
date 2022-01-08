@@ -1,5 +1,5 @@
 import React from 'react';
-import './detalle.css'
+import './Styles/detalle.css'
 import { useParams } from "react-router-dom";
 import ItemDetailContainer from '../components/ItemDetailContainer';
 

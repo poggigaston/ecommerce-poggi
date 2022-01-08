@@ -1,0 +1,14 @@
+.contenedorCon{
+    background-color: #fbfeffd3;
+    max-width: 40rem;    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto auto;
+}
+
+.card1 {
+    background: rgba(193, 192, 194, 0.603);    
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: 120vmin;
+}

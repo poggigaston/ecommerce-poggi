@@ -1,12 +1,12 @@
 import React from 'react';
-import './contacto.css';
+import './Styles/contacto.css';
 
 const Contacto = () => {
     return (
-        <div class='contenedorCon'>
-            <div className='container'>             
-            <div className="mb-2 p-4 emailBox">
-                <label for="emailAddress" className="form-label">Correo Electronico (Se pondra de color verde si es valido)</label>
+        <div className='container-fluid card card1'>
+            <div className='container-fluid contenedorCon'>             
+            <div className="mb-2 p-4 "><h2>Contacto</h2>
+                <label for="emailAddress" className="form-label m-2">Correo Electronico</label>
                 <input type="email" className="form-control" id="miForm" placeholder="ejemplo@ejemplo.com" required></input>
                 <span id="emailOK"></span>
             </div>

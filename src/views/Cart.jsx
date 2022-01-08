@@ -3,7 +3,7 @@ import { CarritoContext } from '../context/CarritoProvider'
 import ElementosCarrito from '../components/ElementosCarrito';
 import { NavLink } from 'react-router-dom';
 import carro from '../assets/images/carro.png'
-import './cart.css'
+import './Styles/cart.css'
 
 function Cart() {      
     const carritoContext = useContext(CarritoContext)

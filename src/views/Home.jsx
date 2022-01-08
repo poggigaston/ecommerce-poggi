@@ -1,7 +1,7 @@
 import React from 'react';
 import Carrousel  from '../components/Carrousel';
 import  SelectorInicio from '../components/SelectorInicio';
-import './home.css';
+import './Styles/home.css';
 
 
 export default function Home() {
