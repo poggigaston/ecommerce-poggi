@@ -4,7 +4,7 @@ import CartWidget from "./CartWidget";
 
 function NavBar() {
     return (
-        <div >
+        <div>
             <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
                 <div className="container-fluid d-flex justify-content-between">
                     <NavLink className="navbar-brand mb-0 h3" to="/" >ALARMHOME</NavLink>

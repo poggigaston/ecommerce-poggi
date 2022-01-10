@@ -15,7 +15,7 @@ export default function ItemDetail({ item }) {
     return (
         <div className="container-fluid">
             <div className="card container-fluid" style={style}>
-                <img src={src[item.img]} className="img-fluid" alt={item.nombre}></img>
+                <img src={src[item.img]} className="img-fluid m-2" alt={item.nombre}></img>
                 <div className="card-body">
                     <h5 className="card-title">{item.nombre}</h5>
                     <p className="card-text">{item.descripcion}<br></br><br></br>

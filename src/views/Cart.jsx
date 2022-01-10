@@ -15,7 +15,7 @@ function Cart() {
     console.log(carrito )
 
     return (        
-        <div>{carrito.length !== 0 ? <div>
+        <div className='fondoCart bg-white'>{carrito.length !== 0 ? <div>
             <ElementosCarrito total={total }carrito= {carrito}/>           
         </div> : <div>
                 <img className='img-fluid carro' src={carro} alt="" />

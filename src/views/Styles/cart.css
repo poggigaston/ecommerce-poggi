@@ -1,16 +1,16 @@
 .carrito{
-    height: 110vh;
-    width: 50rem;
-    display: inline;
-    
-    align-items: center;   
+    background: rgb(185, 238, 183);  
 }
 .carro{
     width: 400px;
 }
-.tabla{
-    border-style: ridge;
+.tabla{    
     border-radius: 20px;
-    padding: 10px;
-    margin: 20px;
+    padding: 10px; 
+    margin: 20px; 
+    max-width: 50rem;
+    margin: auto auto 20px;
+} 
+.card {
+    border-radius: 40px;
 }

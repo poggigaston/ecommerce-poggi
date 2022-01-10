@@ -3,8 +3,8 @@ import './Styles/contacto.css';
 
 const Contacto = () => {
     return (
-        <div className='container-fluid card card1'>
-            <div className='container-fluid contenedorCon'>             
+        <div className='container-fluid card1'>
+            <div className='container-fluid card contenedorCon'>             
             <div className="mb-2 p-4 "><h2>Contacto</h2>
                 <label for="emailAddress" className="form-label m-2">Correo Electronico</label>
                 <input type="email" className="form-control" id="miForm" placeholder="ejemplo@ejemplo.com" required></input>
