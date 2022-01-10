@@ -17,11 +17,11 @@ function Cart() {
     return (        
         <div className='fondoCart bg-white'>{carrito.length !== 0 ? <div>
             <ElementosCarrito total={total }carrito= {carrito}/>           
-        </div> : <div>
-                <img className='img-fluid carro' src={carro} alt="" />
-            <h1>El carrito vacio!!</h1>
-            <section><NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink></section>
-        </div>}            
+        </div> : <div className='container-fluid fondoCarro'>
+                    <img className='img-fluid carro' src={carro} alt="Carro" />
+                    <h1>El carrito vacio!!</h1>
+                    <section><NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink></section>
+                </div>}            
         </div> 
     )
 }

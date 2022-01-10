@@ -25,7 +25,7 @@ const ElementosCarrito = ({ carrito, total}) => {
                             {carrito.map((el) => (
                             <tr>
                                 <td>{el.img }</td>                            
-                                <th>{el.nombre}<img src={src[el.img]} width={80} alt={el.nombre}/></th>
+                                <th>{el.nombre}<img src={src[el.img]} width={90} alt={el.nombre}/></th>
                                 <td>{el.cantidad}</td>
                                 <td>$ {el.precio * el.cantidad}</td>                               
                                 <td><i className="fas fa-trash" onClick={() => eliminarItem(el)}></i></td>

@@ -1,8 +1,13 @@
 .carrito{
-    background: rgb(185, 238, 183);  
+    background: rgb(185, 238, 183);
+    min-height: 90vh;
+}
+.fondoCarro{
+    min-height: 90vh;
 }
 .carro{
     width: 400px;
+    margin: auto auto auto auto;
 }
 .tabla{    
     border-radius: 20px;
