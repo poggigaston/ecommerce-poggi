@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import src from "../assets/img";
 
 export default function Item({ item }) {
     const style = {
         width: '18rem'
-    };   
-    
+    };
+        
     return (
         <div className="col col-md-6 col-lg-4 col- my-4">           
             <div className="card" style={style}>
@@ -16,7 +16,7 @@ export default function Item({ item }) {
                     <p className="card-text">{item.descripcion}<br></br></p>
                         <div className="h3">$ {item.precio}</div>
                     <p>Stock {item.stock}</p>
-                    <NavLink to={`/detalle/${item.id}`}><button className="btn btn-success" >Ver Detalle</button></NavLink>
+                    <Link to={`/detalle/${item.id}`}><button className="btn btn-success">Ver Detalle</button></Link>
                 </div>
             </div>
         </div>

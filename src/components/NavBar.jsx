@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
-
 function NavBar() {
+    
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
@@ -14,7 +14,7 @@ function NavBar() {
                     <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <NavLink to="/productos" className="nav-link" aria-current="page">Productos</NavLink>
+                                <NavLink to="/productos" className="nav-link up" aria-current="page">Productos</NavLink>
                             </li>
                             <li className="nav-item dropdown">
                                 <NavLink to="/categorias" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Categorias</NavLink>                            

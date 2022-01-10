@@ -1,5 +1,6 @@
 .contenedorCon{
     background-color: #fbfeffd3;
+    text-align: left;
     max-width: 40rem;    
     padding-top: 10px;
     padding-bottom: 10px;
@@ -8,7 +9,7 @@
 
 .card1 {
     background: rgba(193, 192, 194, 0.603);    
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 2rem;
     height: 120vmin;
 }

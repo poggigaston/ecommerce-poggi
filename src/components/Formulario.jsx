@@ -42,7 +42,7 @@ const Formulario = ({ total, compra }) => {
             Swal.fire({
             title: "Espera!",
             text: "Tu solucitud esta en proceso",
-            icon: "error"
+            icon: "info"
             });
             generarTicket(formulario, "ordenes");                       
         }
