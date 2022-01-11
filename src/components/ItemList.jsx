@@ -5,9 +5,9 @@ import Cargando from './Cargando';
 
 export default function Itemlist ({items}) {
     return (
-        <div className="row" style={{paddingLeft:"6em"}}>
+        <div className="row" style={{margin:"auto auto"}}>
             {items ? items.map((item) => (
-                <Item item={item}/>
+                <Item key={item.id} item={item}/>
             )): <Cargando />}
         </div>
     )

@@ -28,8 +28,7 @@ const CarritoProvider = ({ children }) => {
         setCount(1);        
     }    
     
-    function addCarrito({ item }) {       
-        console.log(isInCart(item.id));
+    function addCarrito({ item }) {    
         if (isInCart(item.id)) {
             let arr = carrito.find((i) => i.id === item.id);
             arr.cantidad = arr.cantidad + contador;

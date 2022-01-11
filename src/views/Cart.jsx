@@ -10,13 +10,11 @@ function Cart() {
     const { carrito } = carritoContext
     
     let precio = carrito.map((e) => (e.precio * e.cantidad))
-    let total = precio.reduce((a, b) => a + b, 0);
-    console.log(total )
-    console.log(carrito )
+    let total = precio.reduce((a, b) => a + b, 0);    
 
     return (        
         <div className='fondoCart bg-white'>{carrito.length !== 0 ? <div>
-            <ElementosCarrito total={total }carrito= {carrito}/>           
+            <ElementosCarrito key={carrito.id} total={total }carrito= {carrito}/>           
         </div> : <div className='container-fluid fondoCarro'>
                     <img className='img-fluid carro' src={carro} alt="Carro" />
                     <h1>El carrito vacio!!</h1>

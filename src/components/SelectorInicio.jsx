@@ -38,12 +38,12 @@ export default function SelectorInicio () {
 
     return (
         <div>            
-            {categorias.map((inicio) => (
-                <div id={inicio.id} className="container-fluid p-3 text-center col-lg-6 col-sm-12 ">
-                    <NavLink to={inicio.link}>
-                        <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{inicio.titulo}</button>
+            {categorias.map((e) => (
+                <div key={e.id} id={e.id} className="container-fluid p-3 text-center col-lg-6 col-sm-12 ">
+                    <NavLink to={e.link}>
+                        <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{e.titulo}</button>
                     </NavLink>
-                    <img id={inicio.idImagen} src={inicio.linkImagen} alt={inicio.titulo}></img>
+                    <img id={e.idImagen} src={e.linkImagen} alt={e.titulo}></img>
                 </div>
             ))}            
         </div>

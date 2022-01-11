@@ -14,13 +14,14 @@ function ItemDetailContainer( {id}) {
             if (doc.exists()) {
                 setState({ id: doc.id, ...doc.data()});
             }            
-        })               
+        })  
+        // eslint-disable-next-line             
     }, []) 
 
     return (
         <div className="container-fluid" style={{paddingTop:"15px", paddingBottom:"50px"}}>            
             {state ? 
-                <ItemDetail item={state}/> 
+                <ItemDetail key={state.id} item={state}/> 
             : <Cargando/>}    
         </div>      
     )

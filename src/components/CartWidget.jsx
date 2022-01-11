@@ -6,9 +6,7 @@ import {CarritoContext}  from '../context/CarritoProvider'
 export default function CartWidget() {  
     
     const carritoContext = useContext(CarritoContext)
-    const { carrito } = carritoContext
-    console.log(carrito.length);
-    
+    const { carrito } = carritoContext    
     
     return (
         <>{carrito.length !== 0 ?

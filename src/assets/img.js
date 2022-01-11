@@ -15,7 +15,7 @@ import DGW500PET from './images/Sensores/DGB-2-PET.jpg';
 import MP300 from './images/Sirenas/MP-300.jpg';
 import MP150 from './images/Sirenas/MP-150.jpg';
 import MP200 from './images/Sirenas/MP-200.jpg';
-
+// eslint-disable-next-line
 export default [
     PC732GLED,
     PC900GLED,

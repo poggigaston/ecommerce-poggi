@@ -4,7 +4,7 @@ import './Styles/formulario.css'
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import db from "../service"
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc/* , updateDoc, doc */ } from "firebase/firestore";
 
 const Formulario = ({ total, compra }) => {
 
@@ -82,22 +82,22 @@ const Formulario = ({ total, compra }) => {
         }
     };    
     
-    const actualizarItem = async (id) => {
-        const ordenDoc = doc(db, "items", id);
-        try {
-            await updateDoc(ordenDoc, { stock: doc.stock - doc.cantidad });
-            console.log("se actualiza correctamente");
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    // const actualizarItem = async (id) => {
+    //     const ordenDoc = doc(db, "items", id);
+    //     try {
+    //         await updateDoc(ordenDoc, { stock: doc.stock - doc.cantidad });
+    //         console.log("se actualiza correctamente");
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     return (    
         <div className='formulario justify-content-center align-self-center border bg-light'><h3>Datos del Comprador</h3>
              <form onSubmit={onSubmit} >
                     <div className="form-group" id="form">
                         <div>
-                            <label for="exampleInputEmail1">Nombre</label>
+                            <label>Nombre</label>
                             <input
                                 type="text"
                                 className={`form-control ${error.nombre && "is-invalid"}`}
@@ -108,7 +108,7 @@ const Formulario = ({ total, compra }) => {
                                 placeholder="Ingrese su nombre"
                             />
                             {error.nombre && <h6 className='text-danger'>{error.nombre}</h6>}
-                            <label for="exampleInputEmail1">Apellido</label>
+                            <label>Apellido</label>
                             <input
                                 type="text"
                                 className={`form-control ${error.apellido && "is-invalid"}`}
@@ -119,7 +119,7 @@ const Formulario = ({ total, compra }) => {
                                 placeholder="Ingrese su apellido"
                             />
                             {error.apellido && <h6 className='text-danger'>{error.apellido}</h6>}
-                            <label for="exampleInputEmail1">Telefono</label>
+                            <label>Telefono</label>
                             <input
                                 type="numero"
                                 className={`form-control ${error.telefono && "is-invalid"}`}
@@ -130,7 +130,7 @@ const Formulario = ({ total, compra }) => {
                                 placeholder="Ej. 1157668899"
                             />
                             {error.telefono && <h6 className='text-danger'>{error.telefono}</h6>}
-                            <label for="exampleInputEmail1">Email</label>
+                            <label>Email</label>
                             <input
                                 type="email"
                                 className={`form-control ${error.email && "is-invalid"}`}

@@ -69,7 +69,7 @@ const Contacto = () => {
         <div className='container-fluid card1'>
             <div className='container-fluid card contenedorCon'>             
             <div className="mb-2 p-2 "><h2 className='text-center'>Contacto</h2>
-                <label for="emailAddress" className="form-label m-0">Email</label>
+                <label className="form-label m-0">Email</label>
                     <input
                         type="email"
                         name='email'
@@ -83,7 +83,7 @@ const Contacto = () => {
             </div>
             
             <div className="mb-2 p-4">
-                <label for="FormControl" className="form-label m-0">Deje su comentario</label>
+                <label className="form-label m-0">Deje su comentario</label>
                     <textarea
                         type="text"
                         name='descripcion'

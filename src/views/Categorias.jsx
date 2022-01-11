@@ -18,7 +18,8 @@ export default function Categorias() {
           console.log("No results");
         }
       setFiltrado(snapshot.docs.map((snapshot) => ({id: snapshot.id, ...snapshot.data() })));  
-      })            
+      })
+      // eslint-disable-next-line          
     }, [])   
                                                                        
     return (

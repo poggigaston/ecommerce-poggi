@@ -5,7 +5,8 @@ import src from "../assets/img";
 export default function Item({ item }) {
     const style = {
         maxWidth: '18rem',
-        minHeight: '28rem'
+        minHeight: '28rem',
+        margin: 'auto auto'
     };
         
     return (
