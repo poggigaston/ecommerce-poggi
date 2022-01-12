@@ -60,22 +60,19 @@ const CarritoProvider = ({ children }) => {
     }
 
     function eliminarItem(el) {    
-        if (el.cantidad > 1) {
-            console.log(el);    
+        if (el.cantidad > 1) {            
             el.cantidad = el.cantidad - 1
             setCarrito([...carrito]);          
         } else {
             let indice = carrito.indexOf(el);            
             if (indice !== -1) {                
                 const newArray = carrito.filter((item) => item.id !== el.id);
-                setCarrito(newArray);                
-                console.log(carrito);    
+                setCarrito(newArray);       
             }            
         }
     }
         
         return (
-
             <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, contador, vaciarCarrito, eliminarItem, isInCart }}>
                 {children}
             </CarritoContext.Provider>

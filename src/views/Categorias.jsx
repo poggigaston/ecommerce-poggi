@@ -19,8 +19,8 @@ export default function Categorias() {
         }
       setFiltrado(snapshot.docs.map((snapshot) => ({id: snapshot.id, ...snapshot.data() })));  
       })
-      // eslint-disable-next-line          
-    }, [])   
+      // eslint-disable-next-line
+    }, [filtrado])   
                                                                        
     return (
       <div className='container-fluid contenedorCat'>                 
