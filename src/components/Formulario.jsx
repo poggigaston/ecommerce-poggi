@@ -4,7 +4,8 @@ import './Styles/formulario.css'
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import db from "../service"
-import { collection, addDoc/* , updateDoc, doc */ } from "firebase/firestore";
+import { collection, addDoc, /* updateDoc, doc */ } from "firebase/firestore";
+
 
 const Formulario = ({ total, compra }) => {
 
@@ -32,7 +33,7 @@ const Formulario = ({ total, compra }) => {
     
     const onSubmit = (e) => {
         e.preventDefault();
-        if (validar([nombre, apellido, telefono, email])) {
+        if (validar([email, nombre, apellido, telefono ])) {
             Swal.fire({
             title: "Oops!",
             text: "Faltan campos por completar",
@@ -42,7 +43,9 @@ const Formulario = ({ total, compra }) => {
             Swal.fire({
             title: "Espera!",
             text: "Tu solucitud esta en proceso",
-            icon: "info"
+            timer: 2000,
+            icon: "info",
+            timerProgressBar: true,
             });
             generarTicket(formulario, "ordenes");                       
         }
@@ -68,15 +71,65 @@ const Formulario = ({ total, compra }) => {
         setError({});
     };
     
+    const finalizarCompra = async () => {    
+        if (compra.length !== 0 ) {
+            const productoMp = compra.map ( (prod) => {
+                return {
+                    title: prod.nombre,
+                    description: prod.descripcion,
+                    picture_url: "",
+                    category_id: prod.id,
+                    quantity: prod.cantidad,
+                    currency_id: "ARS",
+                    unit_price: prod.precio 
+                }
+            })
+            
+            const resp = await fetch( `https://api.mercadopago.com/checkout/preferences`, {
+                method:`POST`,
+                headers: {
+                    Authorization: `Bearer TEST-1798136906201393-092723-253789fa0237b6302f09005006f4296a-86270132`,        
+                },            
+                    body: JSON.stringify({
+                    items: productoMp                                                               
+                })                    
+            })        
+            const data = await resp.json()
+            window.open(data.init_point)
+        }else {
+            Swal.fire({
+                position: 'center',  
+                icon: 'error',            
+                hideClass: {
+                popup: 'animate__animated animate__fadeOutDown'
+                },
+                title: 'Ooops...',
+                text: 'El carrito esta vacio!',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+    }
+
+
     const generarTicket = async (e, nombre) => {
         try {
             const orden = await addDoc(collection(db, nombre), e);           
             Swal.fire({
                 title: "Genial",
                 text: "Su orden de compra se genero con exito con el codigo: " + (orden.id),
-                icon: "success"
-            });
-            vaciarCarrito();           
+                icon: "success",
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                confirmButtonText: 'Pagar con Mercado Pago'                
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    finalizarCompra()
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                   alert("a pagar con ticket"); 
+                }
+            });            
+            vaciarCarrito();            
         } catch (error) {
             console.log(error);
         }
@@ -85,7 +138,7 @@ const Formulario = ({ total, compra }) => {
     // const actualizarItem = async (id) => {
     //     const ordenDoc = doc(db, "items", id);
     //     try {
-    //         await updateDoc(ordenDoc, { stock: doc.stock - doc.cantidad });
+    //         await updateDoc(ordenDoc, { stock: compra[0].stock});
     //         console.log("se actualiza correctamente");
     //     } catch (error) {
     //         console.log(error);
@@ -99,7 +152,7 @@ const Formulario = ({ total, compra }) => {
                         <div>
                             <label>Nombre</label>
                             <input
-                                type="text"
+                                type="nombre"
                                 className={`form-control ${error.nombre && "is-invalid"}`}
                                 name='nombre'
                                 value={nombre}
@@ -110,7 +163,7 @@ const Formulario = ({ total, compra }) => {
                             {error.nombre && <h6 className='text-danger'>{error.nombre}</h6>}
                             <label>Apellido</label>
                             <input
-                                type="text"
+                                type="apellido"
                                 className={`form-control ${error.apellido && "is-invalid"}`}
                                 name="apellido"
                                 value={apellido}
@@ -121,7 +174,7 @@ const Formulario = ({ total, compra }) => {
                             {error.apellido && <h6 className='text-danger'>{error.apellido}</h6>}
                             <label>Telefono</label>
                             <input
-                                type="numero"
+                                type="telefono"
                                 className={`form-control ${error.telefono && "is-invalid"}`}
                                 name="telefono"
                                 value={telefono}

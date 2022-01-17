@@ -32,6 +32,7 @@ const CarritoProvider = ({ children }) => {
         if (isInCart(item.id)) {
             let arr = carrito.find((i) => i.id === item.id);
             arr.cantidad = arr.cantidad + contador;
+            arr.stock = arr.stock - arr.cantidad;
             setCarrito([...carrito]);             
             setCount(1);
             Swal.fire({
