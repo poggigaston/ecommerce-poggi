@@ -4,7 +4,7 @@ Este es repositorio de un E-Commerce desarrollado como proyecto final en el curs
 
 Link
 
-Se puede ver la pagina funcionando en el siguiente LINK
+Se puede ver la pagina funcionando en el siguiente [Link](https://e-commerce-gaston-poggi.netlify.app/)
 
 Instalación
 Despues de clonar el repositorio, ejecutar "npm install" para instalar las dependencias
