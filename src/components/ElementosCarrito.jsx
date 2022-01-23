@@ -13,10 +13,8 @@ const ElementosCarrito = ({ carrito, total}) => {
             <div className='tabla border bg-light'>
                 <table className="table border bg-white">
                         <thead>
-                            <tr>
-                                <th scope="col">Item</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Stock</th>
+                            <tr>                            
+                                <th scope="col">Nombre</th>                                
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col"></th>
@@ -24,12 +22,10 @@ const ElementosCarrito = ({ carrito, total}) => {
                         </thead>
                         <tbody>
                             {carrito.map((el) => (
-                            <tr>
-                                <td>{el.img }</td>                            
+                            <tr>    
                                 <th>{el.nombre}<img src={src[el.img]} width={90} alt={el.nombre}/></th>
-                                <td>{el.stock - el.cantidad}</td>
                                 <td>{el.cantidad}</td>
-                                <td>$ {el.precio * el.cantidad}</td>                               
+                                <td className='precio' >$ {el.precio * el.cantidad}</td>                               
                                 <td><i className="fas fa-trash" onClick={() => eliminarItem(el)}></i></td>
                             </tr>))}              
                         </tbody>
@@ -40,8 +36,7 @@ const ElementosCarrito = ({ carrito, total}) => {
             <div className='container-fluid'>
             <Formulario key={carrito.id} total={total} compra={carrito}/>
             </div>
-        </div>        
-        
+        </div>    
     )
 }
 

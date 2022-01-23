@@ -14,8 +14,18 @@
     padding: 10px; 
     margin: 20px; 
     max-width: 50rem;
-    margin: auto auto 20px;
+    margin: auto auto 20px;    
 } 
+
 .card {
-    border-radius: 40px;
+    border-radius: 40px;    
+}
+
+@media (max-width: 667px) {
+    .precio {
+        font-size: 13px;
+    }
+    .tabla {
+      font-size: 13px;
+    }
 }

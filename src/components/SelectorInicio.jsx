@@ -43,7 +43,7 @@ export default function SelectorInicio () {
                     <NavLink to={e.link}>
                         <button className="btn-lg btn btn-outline-primary btn-primary-outline-success" type="button">{e.titulo}</button>
                     </NavLink>
-                    <img id={e.idImagen} src={e.linkImagen} alt={e.titulo}></img>
+                    <img className='img-fluid' id={e.idImagen} src={e.linkImagen} alt={e.titulo}></img>
                 </div>
             ))}            
         </div>

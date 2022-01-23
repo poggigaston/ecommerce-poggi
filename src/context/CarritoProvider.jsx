@@ -73,11 +73,11 @@ const CarritoProvider = ({ children }) => {
         }
     }
         
-        return (
-            <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, contador, vaciarCarrito, eliminarItem, isInCart }}>
-                {children}
-            </CarritoContext.Provider>
-        );
+    return (
+        <CarritoContext.Provider value={{ carrito, addCarrito, onRes, onSum, contador, vaciarCarrito, eliminarItem, isInCart }}>
+            {children}
+        </CarritoContext.Provider>
+    );
     
 }
 export default CarritoProvider

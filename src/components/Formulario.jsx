@@ -4,13 +4,13 @@ import './Styles/formulario.css'
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import db from "../service"
-import { collection, addDoc, /* updateDoc, doc */ } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 
 
-const Formulario = ({ total, compra }) => {
+function Formulario({ total, compra }) {
 
     const carritoContext = useContext(CarritoContext);
-    const { vaciarCarrito } = carritoContext;    
+    const { vaciarCarrito } = carritoContext;
     const [error, setError] = useState({});
     const [formulario, setFormulario] = useState({
         buyer: {
@@ -22,35 +22,36 @@ const Formulario = ({ total, compra }) => {
         total: total,
         items: compra
     });
-    
+
     const { buyer: { nombre, apellido, telefono, email } } = formulario;
-    
+
     const validar = (campos) => {
         let invalido = false;
         campos.map((campo) => campo === "" ? invalido = true : invalido = false);
         return invalido;
     };
-    
+
     const onSubmit = (e) => {
         e.preventDefault();
-        if (validar([email, nombre, apellido, telefono ])) {
+        if (validar([email, nombre, apellido, telefono])) {
             Swal.fire({
-            title: "Oops!",
-            text: "Faltan campos por completar",
-            icon: "error"
+                title: "Oops!",
+                text: "Faltan campos por completar",
+                icon: "error"
             });
         } else {
             Swal.fire({
-            title: "Espera!",
-            text: "Tu solucitud esta en proceso",
-            timer: 2000,
-            icon: "info",
-            timerProgressBar: true,
+                title: "Espera!",
+                text: "Tu solucitud esta en proceso",
+                timer: 2000,
+                icon: "info",
+                timerProgressBar: true,
             });
-            generarTicket(formulario, "ordenes");                       
+            actualizarItem()
+            generarTicket(formulario, "ordenes");
         }
     };
-   
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormulario({
@@ -70,80 +71,72 @@ const Formulario = ({ total, compra }) => {
         }
         setError({});
     };
-    
-    const finalizarCompra = async () => {    
-        if (compra.length !== 0 ) {
-            const productoMp = compra.map ( (prod) => {
-                return {
-                    title: prod.nombre,
-                    description: prod.descripcion,
-                    picture_url: "",
-                    category_id: prod.id,
-                    quantity: prod.cantidad,
-                    currency_id: "ARS",
-                    unit_price: prod.precio 
-                }
-            })
-            
-            const resp = await fetch( `https://api.mercadopago.com/checkout/preferences`, {
-                method:`POST`,
-                headers: {
-                    Authorization: `Bearer TEST-1798136906201393-092723-253789fa0237b6302f09005006f4296a-86270132`,        
-                },            
-                    body: JSON.stringify({
-                    items: productoMp                                                               
-                })                    
-            })        
-            const data = await resp.json()
-            window.open(data.init_point)
-        }else {
-            Swal.fire({
-                position: 'center',  
-                icon: 'error',            
-                hideClass: {
-                popup: 'animate__animated animate__fadeOutDown'
-                },
-                title: 'Ooops...',
-                text: 'El carrito esta vacio!',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        }
-    }
 
+    // FINALIZO LA COMPRA ENVIANDO A LA API DE MP A PAGAR 
+    
+    const finalizarCompra = async () => {
+        const productoMp = compra.map((prod) => {
+            return {
+                title: prod.nombre,
+                description: prod.descripcion,
+                picture_url: "",
+                category_id: prod.id,
+                quantity: prod.cantidad,
+                currency_id: "ARS",
+                unit_price: prod.precio
+            };
+        });
+        const resp = await fetch(`https://api.mercadopago.com/checkout/preferences`, {
+            method: `POST`,
+            headers: {
+                Authorization: `Bearer TEST-1798136906201393-092723-253789fa0237b6302f09005006f4296a-86270132`,
+            },
+            body: JSON.stringify({
+                items: productoMp
+            })
+        });
+        const data = await resp.json();
+        window.open(data.init_point);
+    };
+
+    // GENERO ORDEN Y MUESTRO NUMERO DE ORDEN 
 
     const generarTicket = async (e, nombre) => {
         try {
-            const orden = await addDoc(collection(db, nombre), e);           
+            const orden = await addDoc(collection(db, nombre), e);
             Swal.fire({
                 title: "Genial",
                 text: "Su orden de compra se genero con exito con el codigo: " + (orden.id),
                 icon: "success",
                 allowEscapeKey: false,
                 allowOutsideClick: false,
-                confirmButtonText: 'Pagar con Mercado Pago'                
+                confirmButtonText: 'Pagar con Mercado Pago'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    finalizarCompra()
+                    finalizarCompra();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                   alert("a pagar con ticket"); 
+                    alert("a pagar con ticket");
                 }
-            });            
-            vaciarCarrito();            
+            });
+            vaciarCarrito();
         } catch (error) {
             console.log(error);
         }
-    };    
+    };
+
+//    ACTUALIZO EL STOCK DE LOS ITEMS
     
-    // const actualizarItem = async (id) => {
-    //     const ordenDoc = doc(db, "items", id);
-    //     try {
-    //         await updateDoc(ordenDoc, { stock: compra[0].stock});
-    //         console.log("se actualiza correctamente");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+    const actualizarItem = function () { 
+        compra.map(async (prod) => {
+            const ordenDoc = doc(db, "items", prod.id);
+            try {
+                await updateDoc(ordenDoc, { stock: prod.stock - prod.cantidad });
+                console.log("se actualiza correctamente");
+            } catch (error) {
+                console.log(error);
+            }    
+        });
+    };
 
     return (    
         <div className='formulario justify-content-center align-self-center border bg-light'><h3>Datos del Comprador</h3>
@@ -194,12 +187,12 @@ const Formulario = ({ total, compra }) => {
                                 placeholder="Ejemplo@mail.com"
                             />
                             {error.email && <h6 className='text-danger'>{error.email}</h6>}
-                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <small id="emailHelp" className="form-text text-muted mb-2">Nunca seran compartido estos datos.</small>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">Terminar Compra</button>
-                    <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3">Seguir Comprando</button></NavLink>
-                    <button type="button" className="btn btn-danger m-3" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
+                    <button type="submit" className="btn btn-primary ">Terminar Compra</button>
+                    <NavLink to="/productos"><button type="button" className="btn btn-secondary m-3 ">Seguir Comprando</button></NavLink>
+                    <button type="button" className="btn btn-danger m-1" onClick={() => vaciarCarrito()}>Vaciar Carrito</button>                
             </form>
         </div>
     )
