@@ -9,6 +9,16 @@ import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 
 function Formulario({ total, compra }) {
 
+    const carrito2 = compra.map((prod) => {
+            return {
+                nombre: prod.nombre,
+                descripcion: prod.descripcion,
+                id: prod.id,
+                cantidad: prod.cantidad,
+                precio: prod.precio
+            };
+        });
+
     const carritoContext = useContext(CarritoContext);
     const { vaciarCarrito } = carritoContext;
     const [error, setError] = useState({});
@@ -20,7 +30,7 @@ function Formulario({ total, compra }) {
             email: "",
         },
         total: total,
-        items: compra
+        items: carrito2
     });
 
     const { buyer: { nombre, apellido, telefono, email } } = formulario;
