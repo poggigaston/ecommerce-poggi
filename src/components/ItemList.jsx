@@ -5,7 +5,7 @@ import Cargando from './Cargando';
 
 export default function Itemlist ({items}) {
     return (
-        <div className="row" style={{margin:"auto auto"}}>
+        <div className="row">
             {items ? items.map((item) => (
                 <Item key={item.id} item={item}/>
             )): <Cargando />}

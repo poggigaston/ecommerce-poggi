@@ -10,7 +10,7 @@ export default function Item({ item }) {
     };
         
     return (
-        <div className="col col-md-6 col-lg-3 col- my-3">           
+        <div className="col col-md-6 col-lg-4 col- my-3">           
             <div className="card" style={style}>
                 <img src={src[item.img]} className="m-3" alt={item.nombre}/>
                 <div className="card-body">
